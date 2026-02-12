@@ -45,11 +45,11 @@ export default function LeadCaptureForm() {
   if (submitted) {
     return (
       <div className="text-center py-12">
-        <CheckCircle className="w-16 h-16 text-[#C9A962] mx-auto mb-4" />
-        <h3 className="font-display text-2xl font-semibold text-[#FAFAF5] mb-2">
+        <CheckCircle className="w-16 h-16 text-gold mx-auto mb-4" />
+        <h3 className="font-display text-2xl font-semibold text-ivory mb-2">
           Thank You
         </h3>
-        <p className="font-body text-[#FAFAF5]/60">
+        <p className="font-body text-ivory/60">
           We&apos;ll be in touch within 24 hours.
         </p>
       </div>
@@ -59,10 +59,10 @@ export default function LeadCaptureForm() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="text-center mb-8">
-        <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#FAFAF5] mb-3">
+        <h3 className="font-display text-2xl md:text-3xl font-semibold text-ivory mb-3">
           Request a Confidential Consultation
         </h3>
-        <p className="font-body text-[#FAFAF5]/60">
+        <p className="font-body text-ivory/60">
           Share your details and we&apos;ll arrange a private discussion about
           your governance needs.
         </p>
@@ -82,7 +82,7 @@ export default function LeadCaptureForm() {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, name: e.target.value }))
               }
-              className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
+              className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors placeholder:text-ivory/30"
             />
           </div>
           <div>
@@ -97,7 +97,7 @@ export default function LeadCaptureForm() {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, email: e.target.value }))
               }
-              className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
+              className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors placeholder:text-ivory/30"
             />
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function LeadCaptureForm() {
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, company: e.target.value }))
             }
-            className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
+            className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors placeholder:text-ivory/30"
           />
         </div>
         <div>
@@ -123,7 +123,7 @@ export default function LeadCaptureForm() {
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, interest: e.target.value }))
             }
-            className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors"
+            className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors"
           >
           <option value="">Select Area of Interest</option>
           <option value="holding-company">Holding Company & Ownership Design</option>
@@ -138,7 +138,7 @@ export default function LeadCaptureForm() {
         <Button
           type="submit"
           disabled={submitting}
-          className="w-full bg-[#C9A962] hover:bg-[#B89952] text-[#121212] font-body font-medium py-6"
+          className="w-full bg-gold hover:bg-gold-hover text-obsidian font-body font-medium py-6"
         >
           {submitting ? "Submitting..." : "Request Consultation"}
           {!submitting && <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />}

@@ -102,7 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${cormorantGaramond.variable} ${outfit.variable} ${spaceGrotesk.variable} antialiased min-h-screen bg-[#0a0a0a]`}
+        className={`${cormorantGaramond.variable} ${outfit.variable} ${spaceGrotesk.variable} antialiased min-h-screen bg-base`}
       >
         <script
           type="application/ld+json"
@@ -110,7 +110,7 @@ export default function RootLayout({
         />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#C9A962] focus:text-[#121212] focus:rounded-lg focus:font-body"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-obsidian focus:rounded-lg focus:font-body"
         >
           Skip to main content
         </a>
