@@ -68,45 +68,63 @@ export default function LeadCaptureForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4" aria-label="Lead capture form">
         <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="lead-name" className="sr-only">Full Name</label>
+            <input
+              id="lead-name"
+              type="text"
+              required
+              placeholder="Full Name"
+              autoComplete="name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, name: e.target.value }))
+              }
+              className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="lead-email" className="sr-only">Email Address</label>
+            <input
+              id="lead-email"
+              type="email"
+              required
+              placeholder="Email Address"
+              autoComplete="email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
+              className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
+            />
+          </div>
+        </div>
+        <div>
+          <label htmlFor="lead-company" className="sr-only">Company / Organization</label>
           <input
+            id="lead-company"
             type="text"
-            required
-            placeholder="Full Name"
-            value={formData.name}
+            placeholder="Company / Organization"
+            autoComplete="organization"
+            value={formData.company}
             onChange={(e) =>
-              setFormData((prev) => ({ ...prev, name: e.target.value }))
-            }
-            className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
-          />
-          <input
-            type="email"
-            required
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData((prev) => ({ ...prev, email: e.target.value }))
+              setFormData((prev) => ({ ...prev, company: e.target.value }))
             }
             className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
           />
         </div>
-        <input
-          type="text"
-          placeholder="Company / Organization"
-          value={formData.company}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, company: e.target.value }))
-          }
-          className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors placeholder:text-[#FAFAF5]/30"
-        />
-        <select
-          value={formData.interest}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, interest: e.target.value }))
-          }
-          className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors"
-        >
+        <div>
+          <label htmlFor="lead-interest" className="sr-only">Area of Interest</label>
+          <select
+            id="lead-interest"
+            value={formData.interest}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, interest: e.target.value }))
+            }
+            className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg text-[#FAFAF5] font-body focus:outline-none focus:border-[#C9A962]/50 transition-colors"
+          >
           <option value="">Select Area of Interest</option>
           <option value="holding-company">Holding Company & Ownership Design</option>
           <option value="governance">Shareholder & Family Governance</option>
@@ -115,14 +133,15 @@ export default function LeadCaptureForm() {
           <option value="execution">Cross-Functional Execution</option>
           <option value="market-entry">Market Entry & Expansion</option>
           <option value="modernization">Operational Modernization</option>
-        </select>
+          </select>
+        </div>
         <Button
           type="submit"
           disabled={submitting}
           className="w-full bg-[#C9A962] hover:bg-[#B89952] text-[#121212] font-body font-medium py-6"
         >
           {submitting ? "Submitting..." : "Request Consultation"}
-          {!submitting && <ArrowRight className="ml-2 h-5 w-5" />}
+          {!submitting && <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />}
         </Button>
       </form>
     </div>

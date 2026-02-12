@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -25,6 +26,7 @@ export default function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
+      aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#C9A962]/10"
@@ -34,7 +36,7 @@ export default function Navigation() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <img src={LOGO_URL} alt="Coigne Capital" className="h-16 w-auto" />
+            <Image src={LOGO_URL} alt="Coigne Capital" width={160} height={64} className="h-16 w-auto" priority />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
@@ -58,6 +60,8 @@ export default function Navigation() {
           <button
             className="md:hidden text-[#FAFAF5]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
