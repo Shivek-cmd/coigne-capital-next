@@ -100,7 +100,7 @@ function HeroSection() {
     <section aria-label="Hero" className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <Image src={IMAGES.governanceBoardroom} alt="" fill sizes="100vw" priority className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-base/70 via-base/50 to-base" />
+        <div className="absolute inset-0 bg-gradient-to-b from-base/90 via-base/75 to-base" />
       </div>
       <div className="absolute inset-0 hex-pattern opacity-30" />
       <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
@@ -157,13 +157,14 @@ function AboutSection() {
             <div className="absolute -bottom-6 -right-6 w-32 h-32 border border-gold/20 rounded-lg" aria-hidden="true" />
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
-            <motion.span variants={fadeInUp} className="font-accent text-sm tracking-[0.2em] text-gold uppercase block mb-4">Who We Are</motion.span>
-            <motion.h2 variants={fadeInUp} className="font-display text-4xl md:text-5xl font-semibold text-ivory mb-6">Governance Built for Complexity</motion.h2>
-            <motion.div variants={fadeInUp} className="space-y-5 text-ivory/70 font-body leading-relaxed">
-              <p>Coigne Capital is a cross-border governance, ownership, and capital structure advisory platform serving founders, families, and international businesses across Canada, the US, and Latin America.</p>
-              <p>Through our internal team and partner network spanning governance, financial, legal, insurance, and technology expertise, we help our clients design clear ownership structures, establish institutional-grade governance, and execute with confidence.</p>
-              <p>Our name reflects our approach: like the coigne stone that locks an architectural structure together, we integrate every element of cross-border governance into a coherent, resilient framework.</p>
-            </motion.div>
+              <motion.span variants={fadeInUp} className="font-accent text-sm tracking-[0.2em] text-gold uppercase block mb-4">Who We Are</motion.span>
+              <motion.h2 variants={fadeInUp} className="font-display text-4xl md:text-5xl font-semibold text-ivory mb-6">About Coigne Capital Partners</motion.h2>
+              <motion.h3 variants={fadeInUp} className="font-display text-2xl text-gold mb-6">Global Expertise, Local Execution</motion.h3>
+              <motion.div variants={fadeInUp} className="space-y-5 text-ivory/70 font-body leading-relaxed">
+                <p>Coigne Capital Partners is a global advisory and consulting platform built to support founders, families, and internationally active businesses. Through our internal team and international partners, we provide access to deep expertise in governance, financial structuring, investment strategy, advanced risk management, and cross-border legal support across Canada, the United States, and Latin America.</p>
+                <p>We help clients design the right structure, define decision rights, and execute with discipline. Rather than fragmenting advice across multiple advisors, we coordinate integrated strategies that bring clarity, alignment, and institutional-grade governance to complex cross-border challenges.</p>
+                <p>To strengthen execution, we integrate digital infrastructure through Synexum Labs. In collaboration with our partner network, Synexum designs and implements practical systems that turn strategy into repeatable operations.</p>
+              </motion.div>
           </motion.div>
         </div>
       </div>
@@ -291,9 +292,9 @@ function ApproachSection() {
 function FamilyLegacySection() {
   return (
     <section aria-label="Family legacy services" className="py-24 md:py-32 bg-base relative overflow-hidden">
-      <div className="absolute inset-0 opacity-20" aria-hidden="true">
+      <div className="absolute inset-0 opacity-15" aria-hidden="true">
         <Image src={IMAGES.familyOfficeConcept} alt="" fill sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-base via-base/90 to-base/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-base via-base/95 to-base/85" />
       </div>
       <div className="container mx-auto px-6 relative z-10">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="max-w-3xl">

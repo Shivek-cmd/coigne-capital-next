@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, CheckCircle, ExternalLink } from "lucide-react";
+import { ArrowRight, CheckCircle, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { services, ICON_MAP } from "@/data/services";
@@ -47,14 +47,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
       <section aria-label="Service hero" className="relative py-32 md:py-40 overflow-hidden">
         <div className="absolute inset-0">
           <Image src={service.heroImage} alt="" fill sizes="100vw" priority className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-base/80 via-base/60 to-base" />
+          <div className="absolute inset-0 bg-gradient-to-b from-base/90 via-base/75 to-base" />
         </div>
         <div className="relative z-10 container mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <Link href="/#services" className="inline-flex items-center gap-2 font-body text-sm text-gold hover:text-gold/80 transition-colors mb-8">
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              All Services
-            </Link>
             <div className="flex items-center gap-4 mb-6">
               {IconComponent && (
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold/20" aria-hidden="true">

@@ -34,7 +34,7 @@ export default function CaseStudiesClient() {
       <section aria-label="Case studies hero" className="relative py-32 md:py-40 overflow-hidden">
         <div className="absolute inset-0">
           <Image src={IMAGES.crossBorderMeeting} alt="" fill sizes="100vw" priority className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-base/80 via-base/60 to-base" />
+          <div className="absolute inset-0 bg-gradient-to-b from-base/90 via-base/75 to-base" />
         </div>
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-accent text-sm tracking-[0.3em] text-gold uppercase block mb-4">
