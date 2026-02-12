@@ -33,14 +33,20 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --color-gold: oklch(0.75 0.12 85);
-  --color-gold-light: oklch(0.85 0.10 85);
-  --color-gold-dark: oklch(0.60 0.14 85);
-  --color-silver: oklch(0.60 0.01 250);
-  --color-silver-light: oklch(0.75 0.01 250);
-  --color-obsidian: oklch(0.15 0.01 250);
-  --color-obsidian-light: oklch(0.20 0.01 250);
-  --color-ivory: oklch(0.98 0.005 90);
+  --color-gold: #C9A962;
+  --color-gold-hover: #B89952;
+  --color-gold-light: #DFC98A;
+  --color-gold-dark: #9A7B3F;
+  --color-silver: #8C8C8C;
+  --color-silver-light: #ABABAB;
+  --color-ivory: #FAFAF5;
+  --color-obsidian: #121212;
+  --color-base: #0a0a0a;
+  --color-base-alt: #0d0d0d;
+  --color-base-deep: #080808;
+  --color-surface: #141414;
+  --color-surface-alt: #1a1a1a;
+  --color-edge: #2a2a2a;
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Outfit', system-ui, sans-serif;
@@ -142,13 +148,6 @@
   .font-display { font-family: var(--font-display); }
   .font-body { font-family: var(--font-body); }
   .font-accent { font-family: var(--font-accent); }
-  .text-gold { color: var(--color-gold); }
-  .text-silver { color: var(--color-silver); }
-  .bg-gold { background-color: var(--color-gold); }
-  .bg-obsidian { background-color: var(--color-obsidian); }
-  .border-gold { border-color: var(--color-gold); }
-  .border-silver { border-color: var(--color-silver); }
-
   .text-gradient-gold {
     background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold), var(--color-gold-dark));
     -webkit-background-clip: text;
@@ -161,7 +160,7 @@
   }
 
   .glow-gold {
-    box-shadow: 0 0 40px rgba(201, 169, 98, 0.15);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--color-gold) 15%, transparent);
   }
 }
 

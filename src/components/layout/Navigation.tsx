@@ -29,7 +29,7 @@ export default function Navigation() {
       aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#C9A962]/10"
+          ? "bg-base/95 backdrop-blur-md border-b border-gold/10"
           : "bg-transparent"
       }`}
     >
@@ -40,25 +40,25 @@ export default function Navigation() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/#about" className="text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors">About</Link>
-            <Link href="/#services" className="text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors">Services</Link>
-            <Link href="/case-studies" className="text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors">Case Studies</Link>
-            <Link href="/blog" className="text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors">Blog</Link>
-            <Link href="/team" className="text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors">Team</Link>
-            <Link href="/#approach" className="text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors">Approach</Link>
-            <Link href="/#contact" className="text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors">Contact</Link>
+            <Link href="/#about" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">About</Link>
+            <Link href="/#services" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Services</Link>
+            <Link href="/case-studies" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Case Studies</Link>
+            <Link href="/blog" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Blog</Link>
+            <Link href="/team" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Team</Link>
+            <Link href="/#approach" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Approach</Link>
+            <Link href="/#contact" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Contact</Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
             <Link href="/#contact">
-              <Button className="bg-[#C9A962] hover:bg-[#B89952] text-[#121212] font-body font-medium px-6">
+              <Button className="bg-gold hover:bg-gold-hover text-obsidian font-body font-medium px-6">
                 Schedule Consultation
               </Button>
             </Link>
           </div>
 
           <button
-            className="md:hidden text-[#FAFAF5]"
+            className="md:hidden text-ivory"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -73,14 +73,14 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden mt-4 pb-4 space-y-4"
           >
-            <Link href="/#about" className="block text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link>
-            <Link href="/#services" className="block text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</Link>
-            <Link href="/case-studies" className="block text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
-            <Link href="/blog" className="block text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
-            <Link href="/team" className="block text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors" onClick={() => setMobileMenuOpen(false)}>Team</Link>
-            <Link href="/#contact" className="block text-sm font-body text-[#FAFAF5]/80 hover:text-[#C9A962] transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            <Link href="/#about" className="block text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link>
+            <Link href="/#services" className="block text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</Link>
+            <Link href="/case-studies" className="block text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
+            <Link href="/blog" className="block text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
+            <Link href="/team" className="block text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Team</Link>
+            <Link href="/#contact" className="block text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="w-full bg-[#C9A962] hover:bg-[#B89952] text-[#121212] font-body font-medium">
+              <Button className="w-full bg-gold hover:bg-gold-hover text-obsidian font-body font-medium">
                 Schedule Consultation
               </Button>
             </Link>
