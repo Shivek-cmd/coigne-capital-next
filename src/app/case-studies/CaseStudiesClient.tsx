@@ -79,7 +79,7 @@ export default function CaseStudiesClient() {
           <p className="font-body text-lg text-ivory/60 max-w-2xl mx-auto mb-8">
             Let us help you navigate your cross-border governance challenges with proven expertise and institutional-grade execution.
           </p>
-          <Link href="/#contact">
+          <Link href="/schedule-consultation">
             <Button size="lg" className="bg-gold hover:bg-gold-hover text-obsidian font-body font-medium px-8 py-6">
               Start a Conversation
               <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />

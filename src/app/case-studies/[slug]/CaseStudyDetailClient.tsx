@@ -101,7 +101,7 @@ export default function CaseStudyDetailClient({ study }: CaseStudyDetailClientPr
           <p className="font-body text-lg text-ivory/60 max-w-2xl mx-auto mb-8">
             Schedule a confidential consultation to discuss how we can help with your cross-border governance challenges.
           </p>
-          <Link href="/#contact">
+          <Link href="/schedule-consultation">
             <Button size="lg" className="bg-gold hover:bg-gold-hover text-obsidian font-body font-medium px-8 py-6">
               Schedule Consultation
               <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />

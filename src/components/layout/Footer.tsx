@@ -40,12 +40,12 @@ export default function Footer() {
           <div>
             <h3 className="font-accent text-xs text-gold uppercase tracking-wider mb-4">Company</h3>
             <nav aria-label="Footer company links" className="space-y-2.5">
-              <Link href="/#about" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">About Us</Link>
+              <Link href="/about" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">About Us</Link>
               <Link href="/team" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Our Team</Link>
               <Link href="/case-studies" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Case Studies</Link>
               <Link href="/blog" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Blog & Insights</Link>
               <Link href="/#approach" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Our Approach</Link>
-              <Link href="/#contact" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Contact Us</Link>
+              <Link href="/contact" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Contact Us</Link>
             </nav>
           </div>
 
