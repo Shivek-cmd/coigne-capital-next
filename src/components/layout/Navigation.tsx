@@ -102,6 +102,7 @@ export default function Navigation() {
             <Link href="/case-studies" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Case Studies</Link>
             <Link href="/blog" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Blog</Link>
             <Link href="/team" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Team</Link>
+            <Link href="/how-we-work" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">How We Work</Link>
             <Link href="/about" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">About</Link>
             <Link href="/contact" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Contact</Link>
           </div>
@@ -167,6 +168,7 @@ export default function Navigation() {
             <Link href="/case-studies" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
             <Link href="/blog" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
             <Link href="/team" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Team</Link>
+            <Link href="/how-we-work" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>How We Work</Link>
             <Link href="/about" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link>
             <Link href="/contact" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             <Link href="/schedule-consultation" onClick={() => setMobileMenuOpen(false)}>
