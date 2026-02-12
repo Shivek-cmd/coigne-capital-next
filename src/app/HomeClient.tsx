@@ -107,16 +107,16 @@ function HeroSection() {
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
           <motion.div variants={fadeInUp} className="mb-6">
             <span className="font-accent text-sm tracking-[0.3em] text-gold uppercase">
-              Cross-Border Advisory Platform
+              Global Advisory &amp; Consulting Platform
             </span>
           </motion.div>
           <motion.h1 variants={fadeInUp} className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-ivory leading-[1.1] mb-8">
-            Design Governance with{" "}
-            <span className="text-gradient-gold">Interlocking Precision</span>{" "}
-            Across Borders
+            Resilient{" "}
+            <span className="text-gradient-gold">Cross-Border Governance</span>{" "}
+            &amp; Capital Structures
           </motion.h1>
           <motion.p variants={fadeInUp} className="font-body text-lg md:text-xl text-ivory/70 max-w-2xl mb-10 leading-relaxed">
-            Coigne Capital helps founders, families, and international businesses design clear ownership structures, establish institutional-grade governance, and execute with confidence across Canada, the US, and Latin America.
+            At Coigne Capital Partners, we help founders, families, and globally active businesses operate across borders with clarity and control. We design and execute capital structures, transactions, and governance with an audit-ready operating backbone, supported by a trusted network across Canada, the United States, and Latin America.
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
             <Link href="/#contact">
