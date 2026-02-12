@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, TrendingUp, Globe, Building2 } from "lucide-react";
+import { ArrowRight, TrendingUp, Globe, Building2, Users, Shield, Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { caseStudies } from "@/data/caseStudies";
@@ -19,9 +19,13 @@ const staggerContainer = {
 };
 
 const industryIcons: Record<string, React.ElementType> = {
+  "Family Office & Wealth Management": Users,
+  "Technology & Software Services": Globe,
+  "Manufacturing & Distribution": Cog,
   "Real Estate": Building2,
   "Technology": Globe,
   "Consumer Goods": TrendingUp,
+  "default": Shield,
 };
 
 export default function CaseStudiesClient() {

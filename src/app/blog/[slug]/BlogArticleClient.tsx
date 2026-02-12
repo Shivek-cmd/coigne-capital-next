@@ -50,14 +50,34 @@ export default function BlogArticleClient({ article }: BlogArticleClientProps) {
       <article className="py-16 md:py-24">
         <div className="container mx-auto px-6 max-w-3xl">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="prose prose-invert prose-lg max-w-none font-body text-ivory/80 leading-relaxed space-y-6">
-            {article.content.split("\n\n").map((paragraph, index) => {
-              if (paragraph.startsWith("## ")) {
-                return <h2 key={index} className="font-display text-2xl md:text-3xl font-semibold text-ivory mt-12 mb-6">{paragraph.replace("## ", "")}</h2>;
+            {article.content.split("\n\n").map((block, index) => {
+              if (block.startsWith("# ") && !block.startsWith("## ")) {
+                return null;
               }
-              if (paragraph.startsWith("### ")) {
-                return <h3 key={index} className="font-display text-xl md:text-2xl font-semibold text-ivory mt-8 mb-4">{paragraph.replace("### ", "")}</h3>;
+              if (block.startsWith("## ")) {
+                return <h2 key={index} className="font-display text-2xl md:text-3xl font-semibold text-ivory mt-12 mb-6">{block.replace("## ", "")}</h2>;
               }
-              return <p key={index}>{paragraph}</p>;
+              if (block.startsWith("### ")) {
+                return <h3 key={index} className="font-display text-xl md:text-2xl font-semibold text-ivory mt-8 mb-4">{block.replace("### ", "")}</h3>;
+              }
+              if (block.startsWith("- ")) {
+                const items = block.split("\n").filter(line => line.startsWith("- "));
+                return (
+                  <ul key={index} className="space-y-3 pl-0">
+                    {items.map((item, i) => {
+                      const text = item.replace(/^- /, "");
+                      return (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 flex-shrink-0" aria-hidden="true" />
+                          <span dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-ivory font-semibold">$1</strong>') }} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                );
+              }
+              const html = block.replace(/\*\*(.*?)\*\*/g, '<strong class="text-ivory font-semibold">$1</strong>');
+              return <p key={index} dangerouslySetInnerHTML={{ __html: html }} />;
             })}
           </motion.div>
         </div>
