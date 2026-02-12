@@ -25,15 +25,16 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setServicesOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    hoverTimeoutRef.current = setTimeout(() => setServicesOpen(false), 200);
+  };
 
   return (
     <motion.nav
@@ -54,10 +55,9 @@ export default function Navigation() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <div ref={dropdownRef} className="relative">
+            <div ref={dropdownRef} className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <button
-                onClick={() => setServicesOpen(!servicesOpen)}
-                className="flex items-center gap-1 text-sm font-body text-ivory/80 hover:text-gold transition-colors"
+                className="flex items-center gap-1 text-sm font-body text-ivory/80 hover:text-gold transition-colors cursor-pointer"
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"
               >
