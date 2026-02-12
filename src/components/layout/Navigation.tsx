@@ -102,12 +102,12 @@ export default function Navigation() {
             <Link href="/case-studies" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Case Studies</Link>
             <Link href="/blog" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Blog</Link>
             <Link href="/team" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Team</Link>
-            <Link href="/#about" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">About</Link>
-            <Link href="/#contact" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Contact</Link>
+            <Link href="/about" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">About</Link>
+            <Link href="/contact" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Contact</Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Link href="/#contact">
+            <Link href="/schedule-consultation">
               <Button className="bg-gold hover:bg-gold-hover text-obsidian font-body font-medium px-6">
                 Schedule Consultation
               </Button>
@@ -167,9 +167,9 @@ export default function Navigation() {
             <Link href="/case-studies" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
             <Link href="/blog" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
             <Link href="/team" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Team</Link>
-            <Link href="/#about" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link>
-            <Link href="/#contact" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-            <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/about" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link>
+            <Link href="/contact" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            <Link href="/schedule-consultation" onClick={() => setMobileMenuOpen(false)}>
               <Button className="w-full bg-gold hover:bg-gold-hover text-obsidian font-body font-medium mt-2">
                 Schedule Consultation
               </Button>

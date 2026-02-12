@@ -119,7 +119,7 @@ function HeroSection() {
             At Coigne Capital Partners, we help founders, families, and globally active businesses operate across borders with clarity and control. We design and execute capital structures, transactions, and governance with an audit-ready operating backbone, supported by a trusted network across Canada, the United States, and Latin America.
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
-            <Link href="/#contact">
+            <Link href="/schedule-consultation">
               <Button size="lg" className="bg-gold hover:bg-gold-hover text-obsidian font-body font-medium px-8 py-6 text-base">
                 Schedule Consultation
                 <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
@@ -336,7 +336,7 @@ function CTASection() {
             Let us help you design clear ownership structures, establish institutional-grade governance, and execute with confidence across the Americas.
           </motion.p>
           <motion.div variants={fadeInUp}>
-            <Link href="/#contact">
+            <Link href="/schedule-consultation">
               <Button size="lg" className="bg-gold hover:bg-gold-hover text-obsidian font-body font-medium px-10 py-6 text-base">
                 Schedule a Consultation
                 <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
