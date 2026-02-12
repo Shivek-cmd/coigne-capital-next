@@ -1,9 +1,11 @@
 export interface CaseStudy {
   id: string;
+  slug: string;
   title: string;
   subtitle: string;
   industry: string;
   region: string;
+  image: string;
   challenge: string;
   solution: string;
   outcome: string;
@@ -14,10 +16,12 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     id: "family-office-restructuring",
+    slug: "family-office-restructuring",
     title: "Multi-Generational Family Office Restructuring",
     subtitle: "Establishing governance clarity across three generations and four jurisdictions",
     industry: "Family Office & Wealth Management",
     region: "Canada, US, Latin America",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
     challenge:
       "A prominent family with significant assets across Canada, the United States, and Mexico faced governance challenges as the business transitioned from founder control to multi-generational stewardship. Unclear decision rights, conflicting tax strategies, and outdated legal structures created operational friction and family tension.",
     solution:
@@ -39,10 +43,12 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "cross-border-expansion",
+    slug: "cross-border-expansion",
     title: "Strategic Market Entry & Capital Structure Optimization",
     subtitle: "Enabling rapid expansion while maintaining tax efficiency and governance control",
     industry: "Technology & Software Services",
     region: "Canada to US & Latin America",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
     challenge:
       "A Canadian technology company with strong domestic success wanted to expand aggressively into the US and Latin American markets. The founders faced complex decisions around capital structure, tax optimization, and maintaining control during growth.",
     solution:
@@ -64,10 +70,12 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "succession-planning",
+    slug: "succession-planning",
     title: "Founder Succession & Institutional Governance Transition",
     subtitle: "Transitioning from founder-led to institutional governance while preserving legacy",
     industry: "Manufacturing & Distribution",
     region: "Canada & US",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     challenge:
       "A 40-year-old manufacturing company faced a critical succession challenge as the founder approached retirement. The business lacked formal governance structures, decision-making authority was concentrated, and there was no clear succession plan.",
     solution:
