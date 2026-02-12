@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, TrendingUp, Globe, Building2, Users, Shield, Cog } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { caseStudies } from "@/data/caseStudies";
@@ -16,16 +16,6 @@ const fadeInUp = {
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
-
-const industryIcons: Record<string, React.ElementType> = {
-  "Family Office & Wealth Management": Users,
-  "Technology & Software Services": Globe,
-  "Manufacturing & Distribution": Cog,
-  "Real Estate": Building2,
-  "Technology": Globe,
-  "Consumer Goods": TrendingUp,
-  "default": Shield,
 };
 
 export default function CaseStudiesClient() {
@@ -51,62 +41,34 @@ export default function CaseStudiesClient() {
 
       <section aria-label="Case study list" className="py-24 md:py-32">
         <div className="container mx-auto px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-12">
-            {caseStudies.map((study, index) => {
-              const IconComponent = industryIcons[study.industry] || Building2;
-              return (
-                <motion.article key={index} variants={fadeInUp} className="bg-surface rounded-lg border border-edge overflow-hidden hover:border-gold/20 transition-all duration-300">
-                  <div className="grid lg:grid-cols-[1fr_2fr] gap-0">
-                    <div className="p-8 bg-gradient-to-br from-gold/10 to-transparent flex flex-col justify-between">
-                      <div>
-                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gold/20 mb-4" aria-hidden="true">
-                          <IconComponent className="h-6 w-6 text-gold" />
-                        </div>
-                        <h3 className="font-display text-2xl font-semibold text-ivory mb-2">{study.title}</h3>
-                        <p className="font-body text-sm text-gold mb-4">{study.subtitle}</p>
-                        <div className="flex gap-4 text-xs font-accent text-ivory/40 uppercase tracking-wider">
-                          <span>{study.industry}</span>
-                          <span aria-hidden="true">·</span>
-                          <span>{study.region}</span>
-                        </div>
-                      </div>
-                      <div className="mt-8 grid grid-cols-2 gap-4">
-                        {study.metrics.map((metric, i) => (
-                          <div key={i} className="text-center p-3 bg-base/50 rounded-lg">
-                            <p className="font-display text-2xl font-semibold text-gold">{metric.value}</p>
-                            <p className="font-body text-xs text-ivory/50 mt-1">{metric.label}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="p-8">
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="font-accent text-xs text-gold uppercase tracking-wider mb-2">Challenge</h4>
-                          <p className="font-body text-ivory/70 leading-relaxed">{study.challenge}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-accent text-xs text-gold uppercase tracking-wider mb-2">Solution</h4>
-                          <p className="font-body text-ivory/70 leading-relaxed">{study.solution}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-accent text-xs text-gold uppercase tracking-wider mb-2">Outcome</h4>
-                          <p className="font-body text-ivory/70 leading-relaxed">{study.outcome}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-accent text-xs text-ivory/40 uppercase tracking-wider mb-2">Key Services</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {study.keyServices.map((service, i) => (
-                              <span key={i} className="text-xs font-body px-3 py-1 bg-gold/10 text-gold rounded-full">{service}</span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {caseStudies.map((study, index) => (
+              <motion.article key={index} variants={fadeInUp}>
+                <Link href={`/case-studies/${study.slug}`} className="group block bg-surface rounded-lg border border-edge overflow-hidden hover:border-gold/30 transition-all duration-300 h-full">
+                  <div className="relative h-56 overflow-hidden">
+                    <Image src={study.image} alt={study.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
+                    <span className="absolute top-4 left-4 font-accent text-xs px-3 py-1 bg-gold/90 text-obsidian rounded-full uppercase tracking-wider">{study.industry}</span>
                   </div>
-                </motion.article>
-              );
-            })}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="font-accent text-xs text-ivory/40 uppercase tracking-wider">{study.region}</span>
+                    </div>
+                    <h3 className="font-display text-xl font-semibold text-ivory mb-3 group-hover:text-gold transition-colors">{study.title}</h3>
+                    <p className="font-body text-sm text-ivory/60 mb-4 leading-relaxed">{study.subtitle}</p>
+                    <div className="flex items-center gap-2 mb-5">
+                      {study.metrics.slice(0, 2).map((metric, i) => (
+                        <span key={i} className="text-xs font-body px-3 py-1 bg-gold/10 text-gold rounded-full">{metric.value} {metric.label}</span>
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-2 font-body text-sm text-gold group-hover:gap-3 transition-all">
+                      Read More
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.article>
+            ))}
           </motion.div>
         </div>
       </section>
