@@ -44,7 +44,7 @@ export default function Footer() {
               <Link href="/team" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Our Team</Link>
               <Link href="/case-studies" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Case Studies</Link>
               <Link href="/blog" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Blog & Insights</Link>
-              <Link href="/#approach" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Our Approach</Link>
+              <Link href="/how-we-work" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">How We Work</Link>
               <Link href="/contact" className="block font-body text-sm text-ivory/50 hover:text-gold transition-colors">Contact Us</Link>
             </nav>
           </div>
