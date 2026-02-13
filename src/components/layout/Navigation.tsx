@@ -7,10 +7,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { services } from "@/data/services";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663201658479/eFrBxfDfdGjOmCXT.png";
 
 export default function Navigation() {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -61,7 +64,7 @@ export default function Navigation() {
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"
               >
-                Services
+                {t("nav.services")}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`} />
               </button>
               <AnimatePresence>
@@ -92,25 +95,26 @@ export default function Navigation() {
                         onClick={() => setServicesOpen(false)}
                         className="block text-center font-body text-xs text-gold hover:text-gold-hover transition-colors"
                       >
-                        View All Services
+                        {t("nav.viewAllServices")}
                       </Link>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-            <Link href="/case-studies" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Case Studies</Link>
-            <Link href="/blog" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Blog</Link>
-            <Link href="/team" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Team</Link>
-            <Link href="/how-we-work" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">How We Work</Link>
-            <Link href="/about" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">About</Link>
-            <Link href="/contact" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">Contact</Link>
+            <Link href="/case-studies" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">{t("nav.caseStudies")}</Link>
+            <Link href="/blog" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">{t("nav.blog")}</Link>
+            <Link href="/team" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">{t("nav.team")}</Link>
+            <Link href="/how-we-work" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">{t("nav.howWeWork")}</Link>
+            <Link href="/about" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">{t("nav.about")}</Link>
+            <Link href="/contact" className="text-sm font-body text-ivory/80 hover:text-gold transition-colors">{t("nav.contact")}</Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
             <Link href="/schedule-consultation">
               <Button className="bg-gold hover:bg-gold-hover text-obsidian font-body font-medium px-6">
-                Schedule Consultation
+                {t("nav.scheduleConsultation")}
               </Button>
             </Link>
           </div>
@@ -137,7 +141,7 @@ export default function Navigation() {
                 className="flex items-center justify-between w-full py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors"
                 aria-expanded={mobileServicesOpen}
               >
-                Services
+                {t("nav.services")}
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
               </button>
               <AnimatePresence>
@@ -165,15 +169,18 @@ export default function Navigation() {
                 )}
               </AnimatePresence>
             </div>
-            <Link href="/case-studies" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
-            <Link href="/blog" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
-            <Link href="/team" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Team</Link>
-            <Link href="/how-we-work" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>How We Work</Link>
-            <Link href="/about" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>About</Link>
-            <Link href="/contact" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            <Link href="/case-studies" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>{t("nav.caseStudies")}</Link>
+            <Link href="/blog" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>{t("nav.blog")}</Link>
+            <Link href="/team" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>{t("nav.team")}</Link>
+            <Link href="/how-we-work" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>{t("nav.howWeWork")}</Link>
+            <Link href="/about" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>{t("nav.about")}</Link>
+            <Link href="/contact" className="block py-3 text-sm font-body text-ivory/80 hover:text-gold transition-colors" onClick={() => setMobileMenuOpen(false)}>{t("nav.contact")}</Link>
+            <div className="py-3 border-t border-edge mt-2">
+              <LanguageSwitcher />
+            </div>
             <Link href="/schedule-consultation" onClick={() => setMobileMenuOpen(false)}>
               <Button className="w-full bg-gold hover:bg-gold-hover text-obsidian font-body font-medium mt-2">
-                Schedule Consultation
+                {t("nav.scheduleConsultation")}
               </Button>
             </Link>
           </motion.div>

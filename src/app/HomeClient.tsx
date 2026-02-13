@@ -143,6 +143,90 @@ function HeroSection() {
   );
 }
 
+const networkRegions = [
+  { name: "Canada", description: "Corporate governance & family trusts" },
+  { name: "United States", description: "Entity structuring & compliance" },
+  { name: "Latin America", description: "Cross-border transactions" },
+  { name: "Europe", description: "International tax planning" },
+  { name: "Asia", description: "Emerging market expansion" },
+  { name: "Partner Network", description: "12 international advisors" },
+];
+
+function GlobalNetworkSection() {
+  return (
+    <section
+      className="py-16 md:py-24 bg-surface-alt border-t border-edge relative overflow-hidden"
+      aria-label="Global network presence"
+      style={{
+        backgroundImage: `url('${IMAGES.globalNetworkBg}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="absolute inset-0 bg-surface-alt/70" />
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeIn}
+            className="mb-16 md:mb-20 text-center"
+          >
+            <p className="text-center text-sm font-accent text-gold tracking-widest uppercase mb-4">Global Network Presence</p>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-ivory mb-4">12 International Partners</h2>
+            <p className="font-body text-ivory/70 max-w-2xl mx-auto">
+              Coordinated expertise across Canada, United States, Latin America, Europe, and Asia to support your global governance and capital structure needs.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {networkRegions.map((region, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-surface-alt border border-edge rounded-lg p-6 hover:border-gold/30 transition-colors"
+              >
+                <div className="text-gold font-display font-bold text-lg mb-2">{region.name}</div>
+                <p className="font-body text-ivory/70 text-sm">{region.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="mt-16 md:mt-20 text-center"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              <div>
+                <div className="text-3xl md:text-4xl font-display font-bold text-gold mb-2">50+</div>
+                <p className="font-body text-ivory/70 text-sm">Structures Executed</p>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-display font-bold text-gold mb-2">98%</div>
+                <p className="font-body text-ivory/70 text-sm">Client Retention</p>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-display font-bold text-gold mb-2">15+</div>
+                <p className="font-body text-ivory/70 text-sm">Years Experience</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function AboutSection() {
   return (
     <section id="about" aria-label="About Coigne Capital" className="py-24 md:py-32 bg-base relative overflow-hidden">
@@ -430,6 +514,7 @@ export default function HomeClient() {
   return (
     <div className="min-h-screen bg-base">
       <HeroSection />
+      <GlobalNetworkSection />
       <AboutSection />
       <ServicesSection />
       <GeographicSection />

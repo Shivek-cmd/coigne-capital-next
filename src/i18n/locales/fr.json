@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "services": "Services",
+    "caseStudies": "Études de Cas",
+    "blog": "Blogue",
+    "team": "Équipe",
+    "howWeWork": "Notre Approche",
+    "about": "À Propos",
+    "contact": "Contact",
+    "scheduleConsultation": "Planifier une Consultation",
+    "viewAllServices": "Voir Tous les Services"
+  },
+  "hero": {
+    "tagline": "Plateforme Mondiale de Conseil et de Consultation",
+    "title1": "Gouvernance",
+    "titleHighlight": "Transfrontalière Résiliente",
+    "title2": "& Structures de Capital",
+    "description": "Chez Coigne Capital Partners, nous aidons les fondateurs, les familles et les entreprises actives à l'international à opérer au-delà des frontières avec clarté et contrôle. Nous concevons et exécutons des structures de capital, des transactions et une gouvernance avec une base opérationnelle prête pour l'audit, soutenue par un réseau de confiance au Canada, aux États-Unis et en Amérique latine.",
+    "cta": "Planifier une Consultation",
+    "exploreServices": "Explorer Nos Services",
+    "scroll": "Défiler"
+  },
+  "globalNetwork": {
+    "tagline": "Présence du Réseau Mondial",
+    "title": "12 Partenaires Internationaux",
+    "description": "Expertise coordonnée au Canada, aux États-Unis, en Amérique latine, en Europe et en Asie pour soutenir vos besoins en gouvernance mondiale et en structure de capital.",
+    "regions": {
+      "canada": "Canada",
+      "canadaDesc": "Gouvernance d'entreprise et fiducies familiales",
+      "us": "États-Unis",
+      "usDesc": "Structuration d'entités et conformité",
+      "latam": "Amérique Latine",
+      "latamDesc": "Transactions transfrontalières",
+      "europe": "Europe",
+      "europeDesc": "Planification fiscale internationale",
+      "asia": "Asie",
+      "asiaDesc": "Expansion sur les marchés émergents",
+      "partners": "Réseau de Partenaires",
+      "partnersDesc": "12 conseillers internationaux"
+    },
+    "stats": {
+      "structures": "Structures Exécutées",
+      "retention": "Rétention des Clients",
+      "experience": "Années d'Expérience"
+    }
+  },
+  "about": {
+    "tagline": "Qui Nous Sommes",
+    "title": "À Propos de Coigne Capital Partners",
+    "subtitle": "Expertise Mondiale, Exécution Locale",
+    "p1": "Coigne Capital Partners est une plateforme mondiale de conseil et de consultation conçue pour soutenir les fondateurs, les familles et les entreprises actives à l'international. Grâce à notre équipe interne et à nos partenaires internationaux, nous offrons un accès à une expertise approfondie en gouvernance, structuration financière, stratégie d'investissement, gestion avancée des risques et soutien juridique transfrontalier au Canada, aux États-Unis et en Amérique latine.",
+    "p2": "Nous aidons nos clients à concevoir la bonne structure, à définir les droits de décision et à exécuter avec discipline. Plutôt que de fragmenter les conseils entre plusieurs conseillers, nous coordonnons des stratégies intégrées qui apportent clarté, alignement et gouvernance de qualité institutionnelle aux défis transfrontaliers complexes.",
+    "p3": "Pour renforcer l'exécution, nous intégrons l'infrastructure numérique via Synexum Labs. En collaboration avec notre réseau de partenaires, Synexum conçoit et met en œuvre des systèmes pratiques qui transforment la stratégie en opérations reproductibles."
+  },
+  "services": {
+    "tagline": "Ce Que Nous Faisons",
+    "title": "Services de Conseil Complets",
+    "description": "De la conception de la propriété à la modernisation opérationnelle, nous fournissons des solutions de gouvernance de bout en bout à travers les Amériques.",
+    "learnMore": "En savoir plus"
+  },
+  "geographic": {
+    "tagline": "Portée Géographique",
+    "title": "Couverture Panaméricaine",
+    "description": "Notre plateforme connecte l'expertise en gouvernance à travers les Amériques, avec des relations profondes dans les marchés clés et les environnements réglementaires.",
+    "canada": "Canada",
+    "canadaDesc": "Gouvernance d'entreprise, fiducies familiales et optimisation fiscale transfrontalière",
+    "us": "États-Unis",
+    "usDesc": "Structuration d'entités, véhicules d'investissement et conformité réglementaire",
+    "latam": "Amérique Latine",
+    "latamDesc": "Entrée sur le marché, partenariats locaux et intégration opérationnelle"
+  },
+  "approach": {
+    "tagline": "Notre Processus",
+    "title": "Comment Nous Travaillons",
+    "description": "Notre approche structurée garantit clarté, alignement et exécution de qualité institutionnelle à chaque étape."
+  },
+  "familyLegacy": {
+    "tagline": "Héritage Familial",
+    "title": "Protéger Ce Qui Compte le Plus",
+    "description": "Pour les familles naviguant dans les complexités de la richesse multigénérationnelle et des opérations transfrontalières, nous fournissons les cadres de gouvernance, les stratégies de succession et l'infrastructure institutionnelle nécessaires pour préserver et faire croître votre héritage."
+  },
+  "cta": {
+    "title": "Prêt à Construire une Gouvernance Résiliente?",
+    "description": "Laissez-nous vous aider à concevoir des structures de propriété claires, à établir une gouvernance de qualité institutionnelle et à exécuter avec confiance à travers les Amériques.",
+    "button": "Planifier une Consultation"
+  },
+  "contact": {
+    "tagline": "Contactez-Nous",
+    "title": "Entamez une Conversation",
+    "description": "Que vous naviguiez dans des défis de gouvernance transfrontalière ou que vous planifiez pour la prochaine génération, nous sommes là pour vous aider.",
+    "email": "Courriel",
+    "regions": "Régions",
+    "phone": "Téléphone",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "emailLabel": "Courriel",
+    "company": "Entreprise / Organisation",
+    "message": "Comment Pouvons-Nous Vous Aider?",
+    "messagePlaceholder": "Parlez-nous de vos besoins en gouvernance transfrontalière...",
+    "send": "Envoyer le Message"
+  },
+  "leadForm": {
+    "title": "Prêt à Explorer Vos Options?",
+    "description": "Partagez vos coordonnées et nous vous contacterons pour discuter de vos besoins en gouvernance et en structure de capital.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Adresse Courriel",
+    "company": "Entreprise / Organisation",
+    "phone": "Numéro de Téléphone (Optionnel)",
+    "submit": "Commencer",
+    "submitting": "Soumission en cours...",
+    "thankYou": "Merci",
+    "followUp": "Nous vous contacterons dans les 24 heures.",
+    "privacy": "Nous respectons votre vie privée. Vos informations sont sécurisées et ne seront utilisées que pour vous contacter au sujet de votre demande."
+  },
+  "footer": {
+    "description": "Gouvernance transfrontalière, conception de la propriété et conseil en structure de capital pour les fondateurs, les familles et les entreprises internationales.",
+    "services": "Services",
+    "company": "Entreprise",
+    "aboutUs": "À Propos",
+    "ourTeam": "Notre Équipe",
+    "caseStudies": "Études de Cas",
+    "blogInsights": "Blogue et Perspectives",
+    "howWeWork": "Notre Approche",
+    "contactUs": "Contactez-Nous",
+    "legal": "Juridique",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsOfService": "Conditions d'Utilisation",
+    "contactTitle": "Contact",
+    "rights": "Tous droits réservés."
+  }
+}
