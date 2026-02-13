@@ -56,6 +56,7 @@ export default function LanguageSwitcher() {
                   key={lang.code}
                   onClick={() => {
                     i18n.changeLanguage(lang.code);
+                    localStorage.setItem("i18nextLng", lang.code);
                     setOpen(false);
                   }}
                   className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-sm font-body transition-colors cursor-pointer ${
