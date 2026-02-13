@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Space_Grotesk } from "next/font/google";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+import I18nProvider from "@/components/I18nProvider";
 import "./globals.css";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://coignecapital.ca";
@@ -114,9 +115,11 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Navigation />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <I18nProvider>
+          <Navigation />
+          <main id="main-content">{children}</main>
+          <Footer />
+        </I18nProvider>
       </body>
     </html>
   );

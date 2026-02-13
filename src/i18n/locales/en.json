@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "services": "Services",
+    "caseStudies": "Case Studies",
+    "blog": "Blog",
+    "team": "Team",
+    "howWeWork": "How We Work",
+    "about": "About",
+    "contact": "Contact",
+    "scheduleConsultation": "Schedule Consultation",
+    "viewAllServices": "View All Services"
+  },
+  "hero": {
+    "tagline": "Global Advisory & Consulting Platform",
+    "title1": "Resilient",
+    "titleHighlight": "Cross-Border Governance",
+    "title2": "& Capital Structures",
+    "description": "At Coigne Capital Partners, we help founders, families, and globally active businesses operate across borders with clarity and control. We design and execute capital structures, transactions, and governance with an audit-ready operating backbone, supported by a trusted network across Canada, the United States, and Latin America.",
+    "cta": "Schedule Consultation",
+    "exploreServices": "Explore Our Services",
+    "scroll": "Scroll"
+  },
+  "globalNetwork": {
+    "tagline": "Global Network Presence",
+    "title": "12 International Partners",
+    "description": "Coordinated expertise across Canada, United States, Latin America, Europe, and Asia to support your global governance and capital structure needs.",
+    "regions": {
+      "canada": "Canada",
+      "canadaDesc": "Corporate governance & family trusts",
+      "us": "United States",
+      "usDesc": "Entity structuring & compliance",
+      "latam": "Latin America",
+      "latamDesc": "Cross-border transactions",
+      "europe": "Europe",
+      "europeDesc": "International tax planning",
+      "asia": "Asia",
+      "asiaDesc": "Emerging market expansion",
+      "partners": "Partner Network",
+      "partnersDesc": "12 international advisors"
+    },
+    "stats": {
+      "structures": "Structures Executed",
+      "retention": "Client Retention",
+      "experience": "Years Experience"
+    }
+  },
+  "about": {
+    "tagline": "Who We Are",
+    "title": "About Coigne Capital Partners",
+    "subtitle": "Global Expertise, Local Execution",
+    "p1": "Coigne Capital Partners is a global advisory and consulting platform built to support founders, families, and internationally active businesses. Through our internal team and international partners, we provide access to deep expertise in governance, financial structuring, investment strategy, advanced risk management, and cross-border legal support across Canada, the United States, and Latin America.",
+    "p2": "We help clients design the right structure, define decision rights, and execute with discipline. Rather than fragmenting advice across multiple advisors, we coordinate integrated strategies that bring clarity, alignment, and institutional-grade governance to complex cross-border challenges.",
+    "p3": "To strengthen execution, we integrate digital infrastructure through Synexum Labs. In collaboration with our partner network, Synexum designs and implements practical systems that turn strategy into repeatable operations."
+  },
+  "services": {
+    "tagline": "What We Do",
+    "title": "Comprehensive Advisory Services",
+    "description": "From ownership design to operational modernization, we provide end-to-end governance solutions across the Americas.",
+    "learnMore": "Learn more"
+  },
+  "geographic": {
+    "tagline": "Geographic Reach",
+    "title": "Pan-American Coverage",
+    "description": "Our platform connects governance expertise across the Americas, with deep relationships in key markets and regulatory environments.",
+    "canada": "Canada",
+    "canadaDesc": "Corporate governance, family trusts, and cross-border tax optimization",
+    "us": "United States",
+    "usDesc": "Entity structuring, investment vehicles, and regulatory compliance",
+    "latam": "Latin America",
+    "latamDesc": "Market entry, local partnerships, and operational integration"
+  },
+  "approach": {
+    "tagline": "Our Process",
+    "title": "How We Work",
+    "description": "Our structured approach ensures clarity, alignment, and institutional-grade execution at every stage."
+  },
+  "familyLegacy": {
+    "tagline": "Family Legacy",
+    "title": "Protecting What Matters Most",
+    "description": "For families navigating the complexities of multi-generational wealth and cross-border operations, we provide the governance frameworks, succession strategies, and institutional infrastructure needed to preserve and grow your legacy."
+  },
+  "cta": {
+    "title": "Ready to Build Resilient Governance?",
+    "description": "Let us help you design clear ownership structures, establish institutional-grade governance, and execute with confidence across the Americas.",
+    "button": "Schedule a Consultation"
+  },
+  "contact": {
+    "tagline": "Get in Touch",
+    "title": "Start a Conversation",
+    "description": "Whether you're navigating cross-border governance challenges or planning for the next generation, we're here to help.",
+    "email": "Email",
+    "regions": "Regions",
+    "phone": "Phone",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "emailLabel": "Email",
+    "company": "Company / Organization",
+    "message": "How Can We Help?",
+    "messagePlaceholder": "Tell us about your cross-border governance needs...",
+    "send": "Send Message"
+  },
+  "leadForm": {
+    "title": "Ready to Explore Your Options?",
+    "description": "Share your details and we'll connect with you to discuss your governance and capital structure needs.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "company": "Company / Organization",
+    "phone": "Phone Number (Optional)",
+    "submit": "Get Started",
+    "submitting": "Submitting...",
+    "thankYou": "Thank You",
+    "followUp": "We'll be in touch within 24 hours.",
+    "privacy": "We respect your privacy. Your information is secure and will only be used to contact you about your inquiry."
+  },
+  "footer": {
+    "description": "Cross-border governance, ownership design, and capital structure advisory for founders, families, and international businesses.",
+    "services": "Services",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "ourTeam": "Our Team",
+    "caseStudies": "Case Studies",
+    "blogInsights": "Blog & Insights",
+    "howWeWork": "How We Work",
+    "contactUs": "Contact Us",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactTitle": "Contact",
+    "rights": "All rights reserved."
+  }
+}
