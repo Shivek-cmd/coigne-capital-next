@@ -5,8 +5,21 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { teamMembers } from "@/data/team";
-import { IMAGES } from "@/data/images";
+import { IMAGES } from "@/lib/images";
+
+interface TeamMember {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  expertise: string;
+  regions: string;
+  image: string;
+}
+
+interface TeamPageClientProps {
+  teamMembers: TeamMember[];
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,7 +31,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
-export default function TeamPageClient() {
+export default function TeamPageClient({ teamMembers }: TeamPageClientProps) {
   return (
     <div className="min-h-screen bg-base">
       <section aria-label="Team hero" className="relative py-32 md:py-40 overflow-hidden">

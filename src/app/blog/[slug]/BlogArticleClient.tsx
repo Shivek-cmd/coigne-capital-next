@@ -4,7 +4,20 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Calendar, Clock, User, Tag, Linkedin, Twitter, Facebook, LinkIcon, Check } from "lucide-react";
-import type { BlogArticle } from "@/data/blog";
+
+interface BlogArticle {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string;
+  readTime: number;
+  category: string;
+  image: string;
+  featured: boolean;
+}
 
 interface TOCItem {
   id: string;

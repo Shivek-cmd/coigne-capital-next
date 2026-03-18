@@ -2,13 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  Building2,
-  Users,
-  TrendingUp,
-  Shield,
-  Layers,
-  Globe,
-  Cog,
   ArrowRight,
   Mail,
   MapPin,
@@ -19,7 +12,19 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
-import { IMAGES } from "@/data/images";
+import { IMAGES } from "@/lib/images";
+import { ICON_MAP } from "@/lib/icons";
+
+interface HomeService {
+  slug: string;
+  icon: string;
+  title: string;
+  shortDescription: string;
+}
+
+interface HomeClientProps {
+  services: HomeService[];
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -43,57 +48,6 @@ const staggerContainer = {
   },
 };
 
-const homeServices = [
-  {
-    icon: Building2,
-    slug: "holding-company-ownership-design",
-    title: "Holding Company & Ownership Design",
-    description:
-      "Developing clear, efficient cross-border ownership structures with well-defined decision rights.",
-  },
-  {
-    icon: Users,
-    slug: "shareholder-family-governance",
-    title: "Shareholder & Family Governance",
-    description:
-      "Establishing roles, voting frameworks, continuity plans, and dispute-prevention mechanisms.",
-  },
-  {
-    icon: TrendingUp,
-    slug: "capital-planning-financial-strategy",
-    title: "Capital Planning and Financial Strategy",
-    description:
-      "Structuring strategies for liquidity events, reinvestment, distributions, and long-term stakeholder cohesion.",
-  },
-  {
-    icon: Shield,
-    slug: "risk-governance",
-    title: "Risk Governance",
-    description:
-      "Implementing practical safeguards to manage challenges such as residency changes, disputes, and banking constraints.",
-  },
-  {
-    icon: Layers,
-    slug: "cross-functional-execution",
-    title: "Cross-Functional Execution",
-    description:
-      "Integrating legal, tax, insurance, and banking inputs into a unified, actionable plan.",
-  },
-  {
-    icon: Globe,
-    slug: "market-entry-expansion",
-    title: "Market Entry & Expansion",
-    description:
-      "Leveraging government and private-sector networks to support expansion across the Americas.",
-  },
-  {
-    icon: Cog,
-    slug: "operational-modernization",
-    title: "Operational Modernization",
-    description:
-      "Deploying digital systems and tailored software to reduce friction, strengthen controls, and enhance visibility.",
-  },
-];
 
 function HeroSection() {
   return (
@@ -256,7 +210,7 @@ function AboutSection() {
   );
 }
 
-function ServicesSection() {
+function ServicesSection({ services }: { services: HomeService[] }) {
   return (
     <section id="services" aria-label="Our services" className="py-24 md:py-32 bg-base-alt relative">
       <div className="absolute inset-0 hex-pattern opacity-20" aria-hidden="true" />
@@ -269,22 +223,25 @@ function ServicesSection() {
           </motion.p>
         </motion.div>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
-          {homeServices.map((service, index) => (
-            <motion.div key={index} variants={fadeInUp} role="listitem">
-              <Link href={`/services/${service.slug}`} className="group relative p-8 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-all duration-300 block h-full">
-                <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold/10 group-hover:bg-gold/20 transition-colors" aria-hidden="true">
-                  <service.icon className="h-7 w-7 text-gold" />
-                </div>
-                <h3 className="font-display text-xl font-semibold text-ivory mb-3 group-hover:text-gold transition-colors">{service.title}</h3>
-                <p className="font-body text-ivory/60 leading-relaxed">{service.description}</p>
-                <div className="mt-4 flex items-center gap-2 text-gold opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
-                  <span className="font-body text-sm">Learn more</span>
-                  <ArrowRight className="h-4 w-4" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-              </Link>
-            </motion.div>
-          ))}
+          {services.map((service, index) => {
+            const IconComponent = ICON_MAP[service.icon];
+            return (
+              <motion.div key={index} variants={fadeInUp} role="listitem">
+                <Link href={`/services/${service.slug}`} className="group relative p-8 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-all duration-300 block h-full">
+                  <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold/10 group-hover:bg-gold/20 transition-colors" aria-hidden="true">
+                    {IconComponent && <IconComponent className="h-7 w-7 text-gold" />}
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-ivory mb-3 group-hover:text-gold transition-colors">{service.title}</h3>
+                  <p className="font-body text-ivory/60 leading-relaxed">{service.shortDescription}</p>
+                  <div className="mt-4 flex items-center gap-2 text-gold opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+                    <span className="font-body text-sm">Learn more</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                </Link>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
@@ -510,13 +467,13 @@ function ContactSection() {
   );
 }
 
-export default function HomeClient() {
+export default function HomeClient({ services }: HomeClientProps) {
   return (
     <div className="min-h-screen bg-base">
       <HeroSection />
       <GlobalNetworkSection />
       <AboutSection />
-      <ServicesSection />
+      <ServicesSection services={services} />
       <GeographicSection />
       <ApproachSection />
       <FamilyLegacySection />

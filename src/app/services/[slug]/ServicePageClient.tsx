@@ -5,7 +5,14 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { services, ICON_MAP } from "@/data/services";
+import { ICON_MAP } from "@/lib/icons";
+
+interface RelatedService {
+  slug: string;
+  iconName: string;
+  title: string;
+  shortDescription: string;
+}
 
 interface SerializedService {
   slug: string;
@@ -36,10 +43,10 @@ const staggerContainer = {
 
 interface ServicePageClientProps {
   service: SerializedService;
+  relatedServices: RelatedService[];
 }
 
-export default function ServicePageClient({ service }: ServicePageClientProps) {
-  const relatedServices = services.filter((s) => service.relatedServices.includes(s.slug));
+export default function ServicePageClient({ service, relatedServices }: ServicePageClientProps) {
   const IconComponent = ICON_MAP[service.iconName];
 
   return (

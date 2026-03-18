@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeClient from "./HomeClient";
+import { getServices } from "@/lib/directus";
 
 export const metadata: Metadata = {
   title: "Cross-Border Governance & Advisory",
@@ -15,6 +16,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
-  return <HomeClient />;
+export default async function Home() {
+  const services = await getServices();
+
+  const serializedServices = services.map((s) => ({
+    slug: s.slug,
+    icon: s.icon,
+    title: s.title,
+    shortDescription: s.short_description,
+  }));
+
+  return <HomeClient services={serializedServices} />;
 }

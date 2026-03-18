@@ -6,13 +6,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { services } from "@/data/services";
+import { ICON_MAP } from "@/lib/icons";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 
+interface NavService {
+  slug: string;
+  title: string;
+  icon: string;
+}
+
+interface NavigationProps {
+  services: NavService[];
+}
+
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663201658479/eFrBxfDfdGjOmCXT.png";
 
-export default function Navigation() {
+export default function Navigation({ services }: NavigationProps) {
   const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -77,17 +87,20 @@ export default function Navigation() {
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-80 bg-surface border border-edge rounded-lg shadow-2xl overflow-hidden"
                   >
                     <div className="p-2">
-                      {services.map((service) => (
-                        <Link
-                          key={service.slug}
-                          href={`/services/${service.slug}`}
-                          onClick={() => setServicesOpen(false)}
-                          className="flex items-start gap-3 px-3 py-2.5 rounded-md hover:bg-gold/10 transition-colors group"
-                        >
-                          <service.icon className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
-                          <span className="font-body text-sm text-ivory/80 group-hover:text-ivory">{service.title}</span>
-                        </Link>
-                      ))}
+                      {services.map((service) => {
+                        const IconComponent = ICON_MAP[service.icon];
+                        return (
+                          <Link
+                            key={service.slug}
+                            href={`/services/${service.slug}`}
+                            onClick={() => setServicesOpen(false)}
+                            className="flex items-start gap-3 px-3 py-2.5 rounded-md hover:bg-gold/10 transition-colors group"
+                          >
+                            {IconComponent && <IconComponent className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />}
+                            <span className="font-body text-sm text-ivory/80 group-hover:text-ivory">{service.title}</span>
+                          </Link>
+                        );
+                      })}
                     </div>
                     <div className="border-t border-edge p-3">
                       <Link

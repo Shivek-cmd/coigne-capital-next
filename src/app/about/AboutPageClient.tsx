@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowRight, Globe, Shield, Users, Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { IMAGES } from "@/data/images";
+import { IMAGES } from "@/lib/images";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },

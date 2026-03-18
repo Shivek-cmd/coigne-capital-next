@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";
-import { IMAGES } from "@/data/images";
+import { IMAGES } from "@/lib/images";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
 
 const fadeInUp = {
