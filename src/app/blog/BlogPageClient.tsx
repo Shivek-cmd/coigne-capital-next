@@ -4,7 +4,24 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import Link from "next/link";
-import { blogArticles } from "@/data/blog";
+
+interface BlogArticle {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string;
+  readTime: number;
+  category: string;
+  image: string;
+  featured: boolean;
+}
+
+interface BlogPageClientProps {
+  articles: BlogArticle[];
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -16,7 +33,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
-export default function BlogPageClient() {
+export default function BlogPageClient({ articles }: BlogPageClientProps) {
   return (
     <div className="min-h-screen bg-base">
       <section aria-label="Blog hero" className="relative py-32 md:py-40 overflow-hidden">
@@ -38,7 +55,7 @@ export default function BlogPageClient() {
       <section aria-label="Blog articles" className="py-24 md:py-32">
         <div className="container mx-auto px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogArticles.map((article, index) => (
+            {articles.map((article, index) => (
               <motion.div key={index} variants={fadeInUp}>
                 <Link href={`/blog/${article.slug}`} className="group block bg-surface rounded-lg border border-edge overflow-hidden hover:border-gold/30 transition-all duration-300 h-full">
                   <div className="relative h-48 overflow-hidden">
@@ -76,7 +93,7 @@ export default function BlogPageClient() {
             ))}
           </motion.div>
 
-          {blogArticles.length === 0 && (
+          {articles.length === 0 && (
             <div className="text-center py-20">
               <h3 className="font-display text-2xl text-ivory/60 mb-4">No articles yet</h3>
               <p className="font-body text-ivory/40">Check back soon for insights and analysis.</p>

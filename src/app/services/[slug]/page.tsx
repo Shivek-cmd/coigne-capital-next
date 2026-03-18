@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getServices, getServiceBySlug } from "@/lib/directus";
+import { getServices, getServiceBySlug, getDirectusImageUrl } from "@/lib/directus";
 import ServicePageClient from "./ServicePageClient";
 
 export async function generateStaticParams() {
   const services = await getServices();
-  if (!services) return [];
+  if (!services || services.length === 0) return [];
 
   return services.map((service) => ({
     slug: service.slug,
@@ -50,6 +50,18 @@ export default async function ServicePage({
     notFound();
   }
 
+  const allServices = await getServices();
+  const relatedServiceItems = allServices.filter((s) =>
+    service.related_services.includes(s.slug)
+  );
+
+  const serializedRelatedServices = relatedServiceItems.map((s) => ({
+    slug: s.slug,
+    iconName: s.icon,
+    title: s.title,
+    shortDescription: s.short_description,
+  }));
+
   // Convert Directus fields → frontend fields
   const serializedService = {
     slug: service.slug,
@@ -57,7 +69,7 @@ export default async function ServicePage({
     title: service.title,
     shortDescription: service.short_description,
     fullDescription: service.full_description,
-    heroImage: service.hero_image,
+    heroImage: service.hero_image ? getDirectusImageUrl(service.hero_image) : "",
     benefits: service.benefits,
     approach: service.approach,
     relatedServices: service.related_services,
@@ -82,7 +94,7 @@ export default async function ServicePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <ServicePageClient service={serializedService} />
+      <ServicePageClient service={serializedService} relatedServices={serializedRelatedServices} />
     </>
   );
 }

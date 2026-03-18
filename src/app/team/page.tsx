@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TeamPageClient from "./TeamPageClient";
+import { getTeamMembers, getDirectusImageUrl } from "@/lib/directus";
 
 export const metadata: Metadata = {
   title: "Our Team - Leadership & Expertise",
@@ -15,6 +16,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TeamPage() {
-  return <TeamPageClient />;
+export default async function TeamPage() {
+  const members = await getTeamMembers();
+
+  const serializedMembers = members.map((m) => ({
+    id: m.id,
+    name: m.name,
+    title: m.title,
+    bio: m.bio,
+    expertise: m.expertise,
+    regions: m.regions,
+    image: getDirectusImageUrl(m.image),
+  }));
+
+  return <TeamPageClient teamMembers={serializedMembers} />;
 }

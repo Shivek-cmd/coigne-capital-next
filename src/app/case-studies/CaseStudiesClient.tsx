@@ -5,8 +5,26 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { caseStudies } from "@/data/caseStudies";
-import { IMAGES } from "@/data/images";
+import { IMAGES } from "@/lib/images";
+
+interface CaseStudy {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  industry: string;
+  region: string;
+  image: string;
+  challenge: string;
+  solution: string;
+  outcome: string;
+  metrics: { label: string; value: string }[];
+  keyServices: string[];
+}
+
+interface CaseStudiesClientProps {
+  caseStudies: CaseStudy[];
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,7 +36,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
-export default function CaseStudiesClient() {
+export default function CaseStudiesClient({ caseStudies }: CaseStudiesClientProps) {
   return (
     <div className="min-h-screen bg-base">
       <section aria-label="Case studies hero" className="relative py-32 md:py-40 overflow-hidden">

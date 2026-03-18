@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Outfit, Space_Grotesk } from "next/font/google";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import I18nProvider from "@/components/I18nProvider";
+import { getServices } from "@/lib/directus";
 import "./globals.css";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://coignecapital.ca";
@@ -75,11 +76,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const services = await getServices();
+
+  const navServices = services.map((s) => ({
+    slug: s.slug,
+    title: s.title,
+    icon: s.icon,
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -116,7 +125,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <I18nProvider>
-          <Navigation />
+          <Navigation services={navServices} />
           <main id="main-content">{children}</main>
           <Footer />
         </I18nProvider>

@@ -46,10 +46,12 @@ export interface DirectusBlogArticle {
 
 export interface DirectusCaseStudy {
   id: string;
+  slug: string;
   title: string;
   subtitle: string;
   industry: string;
   region: string;
+  image: string;
   challenge: string;
   solution: string;
   outcome: string;
@@ -97,12 +99,19 @@ function getDirectusClient() {
 
 const client = getDirectusClient();
 
-export async function getServices(): Promise<DirectusService[] | null> {
-  if (!client) return null;
+export function getDirectusImageUrl(imageId: string): string {
+  if (!imageId) return "";
+  if (imageId.startsWith("http")) return imageId;
+  if (!DIRECTUS_URL) return "";
+  return `${DIRECTUS_URL}/assets/${imageId}`;
+}
+
+export async function getServices(): Promise<DirectusService[]> {
+  if (!client) return [];
   try {
     return await client.request(readItems("services", { sort: ["sort"] }));
   } catch {
-    return null;
+    return [];
   }
 }
 
@@ -118,23 +127,23 @@ export async function getServiceBySlug(slug: string): Promise<DirectusService | 
   }
 }
 
-export async function getTeamMembers(): Promise<DirectusTeamMember[] | null> {
-  if (!client) return null;
+export async function getTeamMembers(): Promise<DirectusTeamMember[]> {
+  if (!client) return [];
   try {
     return await client.request(readItems("team_members", { sort: ["sort"] }));
   } catch {
-    return null;
+    return [];
   }
 }
 
-export async function getBlogArticles(): Promise<DirectusBlogArticle[] | null> {
-  if (!client) return null;
+export async function getBlogArticles(): Promise<DirectusBlogArticle[]> {
+  if (!client) return [];
   try {
     return await client.request(
       readItems("blog_articles", { sort: ["-date_published"] })
     );
   } catch {
-    return null;
+    return [];
   }
 }
 
@@ -150,10 +159,22 @@ export async function getBlogArticleBySlug(slug: string): Promise<DirectusBlogAr
   }
 }
 
-export async function getCaseStudies(): Promise<DirectusCaseStudy[] | null> {
-  if (!client) return null;
+export async function getCaseStudies(): Promise<DirectusCaseStudy[]> {
+  if (!client) return [];
   try {
     return await client.request(readItems("case_studies"));
+  } catch {
+    return [];
+  }
+}
+
+export async function getCaseStudyBySlug(slug: string): Promise<DirectusCaseStudy | null> {
+  if (!client) return null;
+  try {
+    const items = await client.request(
+      readItems("case_studies", { filter: { slug: { _eq: slug } }, limit: 1 })
+    );
+    return items[0] || null;
   } catch {
     return null;
   }

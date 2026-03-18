@@ -5,7 +5,20 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { CaseStudy } from "@/data/caseStudies";
+interface CaseStudy {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  industry: string;
+  region: string;
+  image: string;
+  challenge: string;
+  solution: string;
+  outcome: string;
+  metrics: { label: string; value: string }[];
+  keyServices: string[];
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },

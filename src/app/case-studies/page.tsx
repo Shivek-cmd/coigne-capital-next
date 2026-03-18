@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CaseStudiesClient from "./CaseStudiesClient";
+import { getCaseStudies } from "@/lib/directus";
 
 export const metadata: Metadata = {
   title: "Case Studies - Proven Results",
@@ -15,6 +16,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CaseStudiesPage() {
-  return <CaseStudiesClient />;
+export default async function CaseStudiesPage() {
+  const studies = await getCaseStudies();
+
+  const serializedStudies = studies.map((s) => ({
+    id: s.id,
+    slug: s.slug,
+    title: s.title,
+    subtitle: s.subtitle,
+    industry: s.industry,
+    region: s.region,
+    image: s.image,
+    challenge: s.challenge,
+    solution: s.solution,
+    outcome: s.outcome,
+    metrics: s.metrics,
+    keyServices: s.key_services,
+  }));
+
+  return <CaseStudiesClient caseStudies={serializedStudies} />;
 }

@@ -1,11 +1,15 @@
 import type { MetadataRoute } from "next";
-import { services } from "@/data/services";
-import { blogArticles } from "@/data/blog";
-import { caseStudies } from "@/data/caseStudies";
+import { getServices, getBlogArticles, getCaseStudies } from "@/lib/directus";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://coignecapital.ca";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [services, blogArticles, caseStudies] = await Promise.all([
+    getServices(),
+    getBlogArticles(),
+    getCaseStudies(),
+  ]);
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -75,21 +79,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
+  const servicePages: MetadataRoute.Sitemap = (services || []).map((service) => ({
     url: `${BASE_URL}/services/${service.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const blogPages: MetadataRoute.Sitemap = blogArticles.map((article) => ({
+  const blogPages: MetadataRoute.Sitemap = (blogArticles || []).map((article) => ({
     url: `${BASE_URL}/blog/${article.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
-  const caseStudyPages: MetadataRoute.Sitemap = caseStudies.map((study) => ({
+  const caseStudyPages: MetadataRoute.Sitemap = (caseStudies || []).map((study) => ({
     url: `${BASE_URL}/case-studies/${study.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
