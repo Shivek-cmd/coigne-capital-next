@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import BlogPageClient from "./BlogPageClient";
-import { getBlogArticles } from "@/lib/directus";
+import { getBlogArticles, getDirectusImageUrl } from "@/lib/directus";
 
 export const metadata: Metadata = {
   title: "Blog - Insights & Analysis",
@@ -29,7 +29,7 @@ export default async function BlogPage() {
     date: a.date_published,
     readTime: a.read_time,
     category: a.category,
-    image: a.image,
+    image: getDirectusImageUrl(a.image),
     featured: a.featured,
   }));
 

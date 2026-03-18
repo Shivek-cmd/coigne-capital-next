@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, Globe, Shield, Users, Cog } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { IMAGES } from "@/lib/images";
+import { ICON_MAP } from "@/lib/icons";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -22,14 +23,25 @@ const fadeIn = {
   visible: { opacity: 1, transition: { duration: 0.8 } },
 };
 
-const capabilities = [
-  { icon: Shield, title: "Governance & Structuring", description: "Designing clear ownership structures and governance frameworks that work across jurisdictions." },
-  { icon: Users, title: "Family & Shareholder Advisory", description: "Establishing roles, decision rights, and succession strategies for multi-generational enterprises." },
-  { icon: Globe, title: "Cross-Border Execution", description: "Coordinating legal, tax, banking, and operational inputs into unified strategies across the Americas." },
-  { icon: Cog, title: "Digital Infrastructure", description: "Through Synexum Labs, implementing practical systems that turn strategy into repeatable operations." },
+interface AboutCapability {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface AboutPageClientProps {
+  capabilities: AboutCapability[];
+}
+
+const defaultCapabilities: AboutCapability[] = [
+  { icon: "Shield", title: "Governance & Structuring", description: "Designing clear ownership structures and governance frameworks that work across jurisdictions." },
+  { icon: "Users", title: "Family & Shareholder Advisory", description: "Establishing roles, decision rights, and succession strategies for multi-generational enterprises." },
+  { icon: "Globe", title: "Cross-Border Execution", description: "Coordinating legal, tax, banking, and operational inputs into unified strategies across the Americas." },
+  { icon: "Cog", title: "Digital Infrastructure", description: "Through Synexum Labs, implementing practical systems that turn strategy into repeatable operations." },
 ];
 
-export default function AboutPageClient() {
+export default function AboutPageClient({ capabilities }: AboutPageClientProps) {
+  const displayCapabilities = capabilities.length > 0 ? capabilities : defaultCapabilities;
   return (
     <div className="min-h-screen bg-base">
       <section aria-label="About hero" className="relative py-32 md:py-40 overflow-hidden">
@@ -81,15 +93,18 @@ export default function AboutPageClient() {
             </motion.p>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="grid md:grid-cols-2 gap-8">
-            {capabilities.map((item, index) => (
-              <motion.div key={index} variants={fadeInUp} className="p-8 bg-surface rounded-lg border border-edge">
-                <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold/10" aria-hidden="true">
-                  <item.icon className="h-7 w-7 text-gold" />
-                </div>
-                <h3 className="font-display text-xl font-semibold text-ivory mb-3">{item.title}</h3>
-                <p className="font-body text-ivory/60 leading-relaxed">{item.description}</p>
-              </motion.div>
-            ))}
+            {displayCapabilities.map((item, index) => {
+              const IconComponent = ICON_MAP[item.icon];
+              return (
+                <motion.div key={index} variants={fadeInUp} className="p-8 bg-surface rounded-lg border border-edge">
+                  <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold/10" aria-hidden="true">
+                    {IconComponent && <IconComponent className="h-7 w-7 text-gold" />}
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-ivory mb-3">{item.title}</h3>
+                  <p className="font-body text-ivory/60 leading-relaxed">{item.description}</p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>

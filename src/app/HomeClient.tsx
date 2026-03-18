@@ -22,8 +22,15 @@ interface HomeService {
   shortDescription: string;
 }
 
+interface HomeContactInfo {
+  email: string;
+  phone: string;
+  address: string;
+}
+
 interface HomeClientProps {
   services: HomeService[];
+  contactInfo: HomeContactInfo | null;
 }
 
 const fadeInUp = {
@@ -390,7 +397,11 @@ function CTASection() {
   );
 }
 
-function ContactSection() {
+function ContactSection({ contactInfo }: { contactInfo: HomeContactInfo | null }) {
+  const email = contactInfo?.email || "contact@coignecapital.ca";
+  const phone = contactInfo?.phone || "+1 (438) 800-8514";
+  const address = contactInfo?.address || "Canada \u00b7 United States \u00b7 Latin America";
+
   return (
     <section id="contact" aria-label="Contact us" className="py-24 md:py-32 bg-base relative">
       <div className="container mx-auto px-6">
@@ -402,13 +413,13 @@ function ContactSection() {
               Whether you&apos;re navigating cross-border governance challenges or planning for the next generation, we&apos;re here to help.
             </motion.p>
             <motion.div variants={fadeInUp} className="space-y-6">
-              <a href="mailto:contact@coignecapital.ca" aria-label="Email us at contact@coignecapital.ca" className="flex items-center gap-4 p-4 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
+              <a href={`mailto:${email}`} aria-label={`Email us at ${email}`} className="flex items-center gap-4 p-4 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
                 <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors" aria-hidden="true">
                   <Mail className="h-5 w-5 text-gold" />
                 </div>
                 <div>
                   <span className="font-accent text-xs text-ivory/50 uppercase tracking-wider">Email</span>
-                  <p className="font-body text-ivory">contact@coignecapital.ca</p>
+                  <p className="font-body text-ivory">{email}</p>
                 </div>
               </a>
               <div className="flex items-center gap-4 p-4 bg-surface rounded-lg border border-edge">
@@ -417,16 +428,16 @@ function ContactSection() {
                 </div>
                 <div>
                   <span className="font-accent text-xs text-ivory/50 uppercase tracking-wider">Regions</span>
-                  <p className="font-body text-ivory">Canada &middot; United States &middot; Latin America</p>
+                  <p className="font-body text-ivory">{address}</p>
                 </div>
               </div>
-              <a href="tel:+14388008514" aria-label="Call us at +1 438 800 8514" className="flex items-center gap-4 p-4 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
+              <a href={`tel:${phone.replace(/[^+\d]/g, "")}`} aria-label={`Call us at ${phone}`} className="flex items-center gap-4 p-4 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
                 <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors" aria-hidden="true">
                   <Phone className="h-5 w-5 text-gold" />
                 </div>
                 <div>
                   <span className="font-accent text-xs text-ivory/50 uppercase tracking-wider">Phone</span>
-                  <p className="font-body text-ivory">+1 (438) 800-8514</p>
+                  <p className="font-body text-ivory">{phone}</p>
                 </div>
               </a>
             </motion.div>
@@ -467,7 +478,7 @@ function ContactSection() {
   );
 }
 
-export default function HomeClient({ services }: HomeClientProps) {
+export default function HomeClient({ services, contactInfo }: HomeClientProps) {
   return (
     <div className="min-h-screen bg-base">
       <HeroSection />
@@ -478,7 +489,7 @@ export default function HomeClient({ services }: HomeClientProps) {
       <ApproachSection />
       <FamilyLegacySection />
       <CTASection />
-      <ContactSection />
+      <ContactSection contactInfo={contactInfo} />
     </div>
   );
 }

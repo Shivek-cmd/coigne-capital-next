@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AboutPageClient from "./AboutPageClient";
+import { getAboutCapabilities } from "@/lib/directus";
 
 export const metadata: Metadata = {
   title: "About Us - Global Expertise, Local Execution",
@@ -15,6 +16,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
-  return <AboutPageClient />;
+export default async function AboutPage() {
+  const capabilities = await getAboutCapabilities();
+
+  const serializedCapabilities = capabilities.map((c) => ({
+    icon: c.icon,
+    title: c.title,
+    description: c.description,
+  }));
+
+  return <AboutPageClient capabilities={serializedCapabilities} />;
 }

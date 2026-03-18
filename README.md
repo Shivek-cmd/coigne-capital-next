@@ -57,7 +57,7 @@ src/
 │       ├── input.tsx
 │       ├── separator.tsx
 │       └── textarea.tsx
-├── data/                       # Static fallback data (used when Directus is not configured)
+├── data/                       # Legacy static data (no longer imported; kept for reference)
 │   ├── blog.ts
 │   ├── caseStudies.ts
 │   ├── images.ts
@@ -65,6 +65,8 @@ src/
 │   └── team.ts
 └── lib/
     ├── directus.ts             # Directus SDK client + data-fetching functions
+    ├── icons.ts                # Icon name → Lucide component map
+    ├── images.ts               # Shared image URL constants
     └── utils.ts                # Utility functions (cn)
 ```
 
@@ -99,10 +101,9 @@ pnpm lint
 
 ## How Directus Integration Works
 
-The site works in two modes:
+All pages fetch content from Directus at build time and runtime. Set the `NEXT_PUBLIC_DIRECTUS_URL` environment variable to connect.
 
-1. **Without Directus** (default): Pages render using static fallback data from `src/data/`. No configuration needed.
-2. **With Directus**: Set the `NEXT_PUBLIC_DIRECTUS_URL` environment variable. Pages will fetch content from Directus API instead.
+When Directus is unreachable (or the env var is missing), pages render with sensible inline fallbacks so the site still builds.
 
 ```bash
 # .env.local
@@ -119,8 +120,11 @@ The integration layer (`src/lib/directus.ts`) provides typed functions for each 
 | `getBlogArticles()` | Fetch all blog articles (sorted by date) |
 | `getBlogArticleBySlug(slug)` | Fetch a single blog article by slug |
 | `getCaseStudies()` | Fetch all case studies |
+| `getCaseStudyBySlug(slug)` | Fetch a single case study by slug |
+| `getAboutCapabilities()` | Fetch about page capabilities |
 | `getSiteSettings()` | Fetch site-wide settings (singleton) |
-| `submitForm(data)` | Submit a lead capture form entry |
+| `submitForm(data)` | Submit a form entry (contact or lead capture) |
+| `getDirectusImageUrl(id)` | Convert a Directus file ID to a full asset URL |
 
 ---
 
@@ -207,15 +211,27 @@ Create the following collections in Directus Admin (Settings > Data Model):
 | Field | Type | Interface | Notes |
 |---|---|---|---|
 | `id` | UUID | Auto-generated | Primary key |
+| `slug` | String | Slug | Unique, URL-friendly |
 | `title` | String | Input | Case study title |
 | `subtitle` | String | Input | Subtitle |
 | `industry` | String | Input | e.g. `Manufacturing`, `Technology` |
 | `region` | String | Input | Geographic region |
+| `image` | Image | Image | Featured image |
 | `challenge` | Text | Textarea | The challenge faced |
 | `solution` | Text | Textarea | The solution provided |
 | `outcome` | Text | Textarea | The outcome achieved |
 | `metrics` | JSON | Code (JSON) | Array of objects: `[{"label": "Revenue Growth", "value": "340%"}]` |
-| `key_services` | JSON | Code (JSON) | Array of service slugs |
+| `key_services` | JSON | Code (JSON) | Array of strings: `["Holding Company Design", "Capital Planning"]` |
+
+#### Collection: `about_capabilities`
+
+| Field | Type | Interface | Notes |
+|---|---|---|---|
+| `id` | UUID | Auto-generated | Primary key |
+| `sort` | Integer | Sort | For ordering |
+| `icon` | String | Input | Lucide icon name (same as services: `Shield`, `Users`, `Globe`, `Cog`, etc.) |
+| `title` | String | Input | Capability title |
+| `description` | Text | Textarea | Capability description |
 
 #### Collection: `site_settings` (Singleton)
 
@@ -224,8 +240,12 @@ Mark this collection as a **Singleton** in Directus (Settings > Data Model > sit
 | Field | Type | Interface | Notes |
 |---|---|---|---|
 | `logo_url` | String | Input | Logo image URL |
-| `email` | String | Input | Contact email |
-| `phone` | String | Input | Contact phone |
+| `email` | String | Input | Contact email (e.g. `contact@coignecapital.ca`) |
+| `phone` | String | Input | Contact phone (e.g. `+1 (438) 800-8514`) |
+| `address` | String | Input | Office regions (e.g. `Canada · United States · Latin America`) |
+| `company_description` | Text | Textarea | Short company description for footer |
+| `linkedin_url` | String | Input | LinkedIn company page URL |
+| `twitter_url` | String | Input | Twitter/X profile URL |
 | `hero_background_image` | Image | Image | Home page hero background |
 | `hero_title` | String | Input | Hero section title |
 | `hero_subtitle` | String | Input | Hero section subtitle |
@@ -236,6 +256,7 @@ Mark this collection as a **Singleton** in Directus (Settings > Data Model > sit
 | Field | Type | Interface | Notes |
 |---|---|---|---|
 | `id` | UUID | Auto-generated | Primary key |
+| `type` | String | Input | `contact` or `lead_capture` |
 | `first_name` | String | Input | |
 | `last_name` | String | Input | |
 | `email` | String | Input | |
@@ -250,7 +271,7 @@ Mark this collection as a **Singleton** in Directus (Settings > Data Model > sit
 
 1. Go to **Settings > Access Control**
 2. Edit the **Public** role
-3. Grant **Read** access to: `services`, `team_members`, `blog_articles`, `case_studies`, `site_settings`
+3. Grant **Read** access to: `services`, `team_members`, `blog_articles`, `case_studies`, `about_capabilities`, `site_settings`
 4. Grant **Create** access to: `form_submissions` (so the website can submit forms without auth)
 5. Keep all other permissions restricted
 
@@ -279,13 +300,13 @@ NEXT_PUBLIC_DIRECTUS_URL=https://your-directus-instance.com
 pnpm dev
 ```
 
-The website will now fetch content from Directus. When Directus is unreachable, it falls back to static data.
+The website will now fetch content from Directus. When Directus is unreachable, pages render with inline fallback values.
 
 ### Step 6: Create a Client Account
 
 1. Go to **Settings > Access Control** in Directus
 2. Create a new role (e.g. `Content Editor`) with permissions to:
-   - **Read/Update** on `services`, `team_members`, `blog_articles`, `case_studies`, `site_settings`
+   - **Read/Update** on `services`, `team_members`, `blog_articles`, `case_studies`, `about_capabilities`, `site_settings`
    - **Read** on `form_submissions` (to view leads)
    - **Read/Upload** on `directus_files` (to manage images)
 3. Create a user with this role and share credentials with your client

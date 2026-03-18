@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Outfit, Space_Grotesk } from "next/font/google";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import I18nProvider from "@/components/I18nProvider";
-import { getServices } from "@/lib/directus";
+import { getServices, getSiteSettings } from "@/lib/directus";
 import "./globals.css";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://coignecapital.ca";
@@ -81,13 +81,31 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const services = await getServices();
+  const [services, siteSettings] = await Promise.all([
+    getServices(),
+    getSiteSettings(),
+  ]);
 
   const navServices = services.map((s) => ({
     slug: s.slug,
     title: s.title,
     icon: s.icon,
   }));
+
+  const footerServices = services.map((s) => ({
+    slug: s.slug,
+    title: s.title,
+  }));
+
+  const footerSiteSettings = siteSettings ? {
+    logo_url: siteSettings.logo_url,
+    email: siteSettings.email,
+    phone: siteSettings.phone,
+    address: siteSettings.address,
+    company_description: siteSettings.company_description,
+    linkedin_url: siteSettings.linkedin_url,
+    twitter_url: siteSettings.twitter_url,
+  } : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -127,7 +145,7 @@ export default async function RootLayout({
         <I18nProvider>
           <Navigation services={navServices} />
           <main id="main-content">{children}</main>
-          <Footer />
+          <Footer services={footerServices} siteSettings={footerSiteSettings} />
         </I18nProvider>
       </body>
     </html>

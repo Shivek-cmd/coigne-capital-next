@@ -63,10 +63,22 @@ export interface DirectusSiteSettings {
   logo_url: string;
   email: string;
   phone: string;
+  address: string;
+  company_description: string;
+  linkedin_url: string;
+  twitter_url: string;
   hero_background_image: string;
   hero_title: string;
   hero_subtitle: string;
   hero_description: string;
+}
+
+export interface DirectusAboutCapability {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  sort: number;
 }
 
 export interface DirectusFormSubmission {
@@ -79,6 +91,7 @@ export interface DirectusFormSubmission {
   regions?: string[];
   preferred_contact?: string;
   service_interest?: string;
+  type?: string;
 }
 
 interface DirectusSchema {
@@ -86,6 +99,7 @@ interface DirectusSchema {
   team_members: DirectusTeamMember[];
   blog_articles: DirectusBlogArticle[];
   case_studies: DirectusCaseStudy[];
+  about_capabilities: DirectusAboutCapability[];
   site_settings: DirectusSiteSettings;
   form_submissions: DirectusFormSubmission[];
 }
@@ -177,6 +191,15 @@ export async function getCaseStudyBySlug(slug: string): Promise<DirectusCaseStud
     return items[0] || null;
   } catch {
     return null;
+  }
+}
+
+export async function getAboutCapabilities(): Promise<DirectusAboutCapability[]> {
+  if (!client) return [];
+  try {
+    return await client.request(readItems("about_capabilities", { sort: ["sort"] }));
+  } catch {
+    return [];
   }
 }
 
