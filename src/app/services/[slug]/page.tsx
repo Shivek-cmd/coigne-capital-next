@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { services, getServiceBySlug } from "@/data/services";
+import { getServices, getServiceBySlug } from "@/lib/directus";
 import ServicePageClient from "./ServicePageClient";
 
-export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+export async function generateStaticParams() {
+  const services = await getServices();
+  if (!services) return [];
+
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -13,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getServiceBySlug(slug);
 
   if (!service) {
     return { title: "Service Not Found" };
@@ -21,10 +26,10 @@ export async function generateMetadata({
 
   return {
     title: service.title,
-    description: service.fullDescription,
+    description: service.full_description,
     openGraph: {
       title: `${service.title} | Coigne Capital`,
-      description: service.shortDescription,
+      description: service.short_description,
     },
     alternates: {
       canonical: `/services/${service.slug}`,
@@ -38,20 +43,36 @@ export default async function ServicePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+
+  const service = await getServiceBySlug(slug);
 
   if (!service) {
     notFound();
   }
 
-  const { icon, ...serializedService } = service;
+  // Convert Directus fields → frontend fields
+  const serializedService = {
+    slug: service.slug,
+    iconName: service.icon,
+    title: service.title,
+    shortDescription: service.short_description,
+    fullDescription: service.full_description,
+    heroImage: service.hero_image,
+    benefits: service.benefits,
+    approach: service.approach,
+    relatedServices: service.related_services,
+    technologyPartner: service.technology_partner,
+  };
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.title,
-    description: service.fullDescription,
-    provider: { "@type": "Organization", name: "Coigne Capital" },
+    description: service.full_description,
+    provider: {
+      "@type": "Organization",
+      name: "Coigne Capital",
+    },
   };
 
   return (
@@ -60,6 +81,7 @@ export default async function ServicePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
       <ServicePageClient service={serializedService} />
     </>
   );
