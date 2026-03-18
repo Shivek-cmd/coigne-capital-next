@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getCaseStudies, getCaseStudyBySlug } from "@/lib/directus";
+import { getCaseStudies, getCaseStudyBySlug, getDirectusImageUrl } from "@/lib/directus";
 import CaseStudyDetailClient from "./CaseStudyDetailClient";
 
 interface PageProps {
@@ -43,7 +43,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
     subtitle: study.subtitle,
     industry: study.industry,
     region: study.region,
-    image: study.image,
+    image: getDirectusImageUrl(study.image),
     challenge: study.challenge,
     solution: study.solution,
     outcome: study.outcome,

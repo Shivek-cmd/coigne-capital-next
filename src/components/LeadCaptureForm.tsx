@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { submitForm } from "@/lib/directus";
 
 export default function LeadCaptureForm() {
   const [formData, setFormData] = useState({
@@ -19,26 +20,18 @@ export default function LeadCaptureForm() {
     e.preventDefault();
     setSubmitting(true);
 
-    const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL;
-    if (directusUrl) {
-      try {
-        await fetch(`${directusUrl}/items/form_submissions`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            type: "lead_capture",
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            company: formData.company,
-            phone: formData.phone,
-          }),
-        });
-      } catch {
-        // fallback silently
-      }
+    try {
+      await submitForm({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone || undefined,
+        type: "lead_capture",
+      });
+    } catch {
+      // fallback silently
     }
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     setSubmitted(true);
     setSubmitting(false);
   };

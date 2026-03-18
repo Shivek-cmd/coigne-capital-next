@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBlogArticles, getBlogArticleBySlug } from "@/lib/directus";
+import { getBlogArticles, getBlogArticleBySlug, getDirectusImageUrl } from "@/lib/directus";
 import BlogArticleClient from "./BlogArticleClient";
 
 export async function generateStaticParams() {
@@ -58,7 +58,7 @@ export default async function BlogArticlePage({
     date: article.date_published,
     readTime: article.read_time,
     category: article.category,
-    image: article.image,
+    image: getDirectusImageUrl(article.image),
     featured: article.featured,
   };
 

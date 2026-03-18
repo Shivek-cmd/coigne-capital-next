@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import CaseStudiesClient from "./CaseStudiesClient";
-import { getCaseStudies } from "@/lib/directus";
+import { getCaseStudies, getDirectusImageUrl } from "@/lib/directus";
 
 export const metadata: Metadata = {
   title: "Case Studies - Proven Results",
@@ -26,7 +26,7 @@ export default async function CaseStudiesPage() {
     subtitle: s.subtitle,
     industry: s.industry,
     region: s.region,
-    image: s.image,
+    image: getDirectusImageUrl(s.image),
     challenge: s.challenge,
     solution: s.solution,
     outcome: s.outcome,

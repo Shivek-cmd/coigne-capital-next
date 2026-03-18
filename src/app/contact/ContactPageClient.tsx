@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Phone, Linkedin, Twitter } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone, Linkedin, Twitter, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { submitForm } from "@/lib/directus";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -20,7 +22,53 @@ const fadeIn = {
   visible: { opacity: 1, transition: { duration: 0.8 } },
 };
 
-export default function ContactPageClient() {
+interface ContactInfo {
+  email: string;
+  phone: string;
+  address: string;
+  linkedin_url: string;
+  twitter_url: string;
+}
+
+interface ContactPageClientProps {
+  contactInfo: ContactInfo | null;
+}
+
+export default function ContactPageClient({ contactInfo }: ContactPageClientProps) {
+  const email = contactInfo?.email || "contact@coignecapital.ca";
+  const phone = contactInfo?.phone || "+1 (438) 800-8514";
+  const address = contactInfo?.address || "Canada · United States · Latin America";
+  const linkedinUrl = contactInfo?.linkedin_url || "https://www.linkedin.com/company/coigne-capital";
+  const twitterUrl = contactInfo?.twitter_url || "https://twitter.com/coignecapital";
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      await submitForm({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        company: formData.company,
+        message: formData.message || undefined,
+        type: "contact",
+      });
+    } catch {
+      // fallback silently
+    }
+    setSubmitted(true);
+    setSubmitting(false);
+  };
   return (
     <div className="min-h-screen bg-base">
       <section aria-label="Contact hero" className="relative py-32 md:py-40 overflow-hidden">
@@ -45,22 +93,22 @@ export default function ContactPageClient() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
               <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl font-semibold text-ivory mb-8">How to Reach Us</motion.h2>
               <motion.div variants={fadeInUp} className="space-y-6 mb-10">
-                <a href="mailto:contact@coignecapital.ca" aria-label="Email us at contact@coignecapital.ca" className="flex items-center gap-4 p-5 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
+                <a href={`mailto:${email}`} aria-label={`Email us at ${email}`} className="flex items-center gap-4 p-5 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
                   <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors" aria-hidden="true">
                     <Mail className="h-5 w-5 text-gold" />
                   </div>
                   <div>
                     <span className="font-accent text-xs text-ivory/50 uppercase tracking-wider">Email</span>
-                    <p className="font-body text-ivory">contact@coignecapital.ca</p>
+                    <p className="font-body text-ivory">{email}</p>
                   </div>
                 </a>
-                <a href="tel:+14388008514" aria-label="Call us at +1 438 800 8514" className="flex items-center gap-4 p-5 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
+                <a href={`tel:${phone.replace(/[^+\d]/g, "")}`} aria-label={`Call us at ${phone}`} className="flex items-center gap-4 p-5 bg-surface rounded-lg border border-edge hover:border-gold/30 transition-colors group">
                   <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors" aria-hidden="true">
                     <Phone className="h-5 w-5 text-gold" />
                   </div>
                   <div>
                     <span className="font-accent text-xs text-ivory/50 uppercase tracking-wider">Phone</span>
-                    <p className="font-body text-ivory">+1 (438) 800-8514</p>
+                    <p className="font-body text-ivory">{phone}</p>
                   </div>
                 </a>
                 <div className="flex items-center gap-4 p-5 bg-surface rounded-lg border border-edge">
@@ -69,7 +117,7 @@ export default function ContactPageClient() {
                   </div>
                   <div>
                     <span className="font-accent text-xs text-ivory/50 uppercase tracking-wider">Regions</span>
-                    <p className="font-body text-ivory">Canada &middot; United States &middot; Latin America</p>
+                    <p className="font-body text-ivory">{address}</p>
                   </div>
                 </div>
               </motion.div>
@@ -77,10 +125,10 @@ export default function ContactPageClient() {
               <motion.div variants={fadeInUp}>
                 <h3 className="font-display text-xl font-semibold text-ivory mb-4">Follow Us</h3>
                 <div className="flex items-center gap-4">
-                  <a href="https://www.linkedin.com/company/coigne-capital" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-11 h-11 rounded-lg bg-surface border border-edge flex items-center justify-center text-ivory/50 hover:text-gold hover:border-gold/30 transition-colors">
+                  <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-11 h-11 rounded-lg bg-surface border border-edge flex items-center justify-center text-ivory/50 hover:text-gold hover:border-gold/30 transition-colors">
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a href="https://twitter.com/coignecapital" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="w-11 h-11 rounded-lg bg-surface border border-edge flex items-center justify-center text-ivory/50 hover:text-gold hover:border-gold/30 transition-colors">
+                  <a href={twitterUrl} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="w-11 h-11 rounded-lg bg-surface border border-edge flex items-center justify-center text-ivory/50 hover:text-gold hover:border-gold/30 transition-colors">
                     <Twitter className="h-5 w-5" />
                   </a>
                 </div>
@@ -99,35 +147,45 @@ export default function ContactPageClient() {
             </motion.div>
 
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn} className="bg-surface rounded-lg border border-edge p-8">
-              <h2 className="font-display text-2xl font-semibold text-ivory mb-6">Send Us a Message</h2>
-              <form className="space-y-6" aria-label="Contact form">
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="contact-first-name" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">First Name</label>
-                    <input id="contact-first-name" type="text" autoComplete="given-name" className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="John" />
-                  </div>
-                  <div>
-                    <label htmlFor="contact-last-name" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">Last Name</label>
-                    <input id="contact-last-name" type="text" autoComplete="family-name" className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="Smith" />
-                  </div>
+              {submitted ? (
+                <div className="text-center py-12">
+                  <CheckCircle className="w-16 h-16 text-gold mx-auto mb-4" />
+                  <h3 className="font-display text-2xl font-semibold text-ivory mb-2">Message Sent</h3>
+                  <p className="font-body text-ivory/60">Thank you for reaching out. We&apos;ll be in touch within 24 hours.</p>
                 </div>
-                <div>
-                  <label htmlFor="contact-email" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">Email</label>
-                  <input id="contact-email" type="email" autoComplete="email" className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="john@company.com" />
-                </div>
-                <div>
-                  <label htmlFor="contact-company" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">Company / Organization</label>
-                  <input id="contact-company" type="text" autoComplete="organization" className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="Your Company" />
-                </div>
-                <div>
-                  <label htmlFor="contact-message" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">How Can We Help?</label>
-                  <textarea id="contact-message" rows={5} className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors resize-none" placeholder="Tell us about your cross-border governance needs..." />
-                </div>
-                <Button type="submit" className="w-full bg-gold hover:bg-gold-hover text-obsidian font-body font-medium py-6">
-                  Send Message
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                </Button>
-              </form>
+              ) : (
+                <>
+                  <h2 className="font-display text-2xl font-semibold text-ivory mb-6">Send Us a Message</h2>
+                  <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="contact-first-name" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">First Name</label>
+                        <input id="contact-first-name" type="text" required autoComplete="given-name" value={formData.firstName} onChange={(e) => setFormData((prev) => ({ ...prev, firstName: e.target.value }))} className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="John" />
+                      </div>
+                      <div>
+                        <label htmlFor="contact-last-name" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">Last Name</label>
+                        <input id="contact-last-name" type="text" required autoComplete="family-name" value={formData.lastName} onChange={(e) => setFormData((prev) => ({ ...prev, lastName: e.target.value }))} className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="Smith" />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="contact-email" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">Email</label>
+                      <input id="contact-email" type="email" required autoComplete="email" value={formData.email} onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))} className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="john@company.com" />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-company" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">Company / Organization</label>
+                      <input id="contact-company" type="text" autoComplete="organization" value={formData.company} onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))} className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors" placeholder="Your Company" />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-message" className="font-accent text-xs text-ivory/50 uppercase tracking-wider block mb-2">How Can We Help?</label>
+                      <textarea id="contact-message" rows={5} value={formData.message} onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))} className="w-full px-4 py-3 bg-surface-alt border border-edge rounded-lg text-ivory font-body focus:outline-none focus:border-gold/50 transition-colors resize-none" placeholder="Tell us about your cross-border governance needs..." />
+                    </div>
+                    <Button type="submit" disabled={submitting} className="w-full bg-gold hover:bg-gold-hover text-obsidian font-body font-medium py-6">
+                      {submitting ? "Sending..." : "Send Message"}
+                      {!submitting && <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />}
+                    </Button>
+                  </form>
+                </>
+              )}
             </motion.div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactPageClient from "./ContactPageClient";
+import { getSiteSettings } from "@/lib/directus";
 
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch",
@@ -15,6 +16,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
-  return <ContactPageClient />;
+export default async function ContactPage() {
+  const siteSettings = await getSiteSettings();
+
+  const contactInfo = siteSettings ? {
+    email: siteSettings.email,
+    phone: siteSettings.phone,
+    address: siteSettings.address,
+    linkedin_url: siteSettings.linkedin_url,
+    twitter_url: siteSettings.twitter_url,
+  } : null;
+
+  return <ContactPageClient contactInfo={contactInfo} />;
 }
