@@ -1,0 +1,39 @@
+[
+  {
+    "slug": "holding-company-ownership-design",
+    "icon": "Building2",
+    "title": "Holding Company & Ownership Design",
+    "short_description": "Developing clear, efficient cross-border ownership structures with well-defined decision rights.",
+    "full_description": "Through our internal team and international partners, we design and implement holding company structures that provide clarity, efficiency, and resilience across multiple jurisdictions.",
+    "benefits": [
+      "Clear delineation of ownership rights and responsibilities across jurisdictions",
+      "Tax-efficient structures that comply with international regulations",
+      "Flexible frameworks that adapt to changing business needs",
+      "Protection of assets through proper legal entity structuring",
+      "Streamlined decision-making processes across borders",
+      "Enhanced credibility with financial institutions and partners"
+    ],
+    "approach": [
+      {
+        "title": "Jurisdictional Analysis",
+        "description": "We analyze the regulatory, tax, and operational landscape of each relevant jurisdiction to identify optimal structuring opportunities."
+      },
+      {
+        "title": "Structure Design",
+        "description": "We architect holding company frameworks that balance control, liability protection, and operational efficiency."
+      },
+      {
+        "title": "Documentation & Implementation",
+        "description": "We prepare comprehensive legal documentation and coordinate with local counsel to ensure proper implementation."
+      },
+      {
+        "title": "Ongoing Optimization",
+        "description": "We monitor regulatory changes and business evolution to recommend structural adjustments as needed."
+      }
+    ],
+    "related_services": [
+      "shareholder-family-governance",
+      "capital-planning-financial-strategy"
+    ]
+  }
+]
